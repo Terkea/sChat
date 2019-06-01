@@ -1,0 +1,4 @@
+com\terkea\controller\PrimaryController.class
+module-info.class
+com\terkea\App.class
+com\terkea\controller\SecondaryController.class

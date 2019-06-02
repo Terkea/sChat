@@ -24,6 +24,7 @@ public class App extends Application {
         stage.setWidth(400);
         stage.setTitle("sChat - Better safe than sorry");
         stage.show();
+        stage.setResizable(false);
     }
 
 
@@ -31,7 +32,7 @@ public class App extends Application {
      * @param fxml the name of the fxml file
      *             changes the scene from the current stage
      */
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 

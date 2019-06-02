@@ -2,24 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03dac0be-6f3c-49d6-9511-dbd7e3631a9e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/terkea/LandingPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/terkea/CreateServer.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/terkea/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terkea/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terkea/controller/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terkea/controller/LandingPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terkea/controller/SecondaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terkea/controller/SecondaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/terkea/primary.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terkea/controller/LandingPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terkea/controller/LandingPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/terkea/LandingPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/terkea/LandingPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/terkea/secondary.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/terkea/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/terkea/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/terkea/controller/PrimaryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/terkea/controller/SecondaryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/terkea/controller/SecondaryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/terkea/primary.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/terkea/view/primary.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/terkea/view/secondary.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/terkea/LandingPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/terkea/LandingPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/terkea/controller/LandingPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/terkea/controller/LandingPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/terkea/secondary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/terkea/secondary.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -37,11 +29,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+            <state relative-caret-position="332">
+              <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1810#1811#0" expanded="true" />
+                <element signature="e#1834#1835#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/com/terkea/CreateServer.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
@@ -49,8 +53,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/LandingPageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="25" column="55" lean-forward="true" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+            <state relative-caret-position="318">
+              <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,8 +66,38 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/com/terkea/LandingPage.fxml">
           <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="20" column="179" selection-start-line="20" selection-start-column="179" selection-end-line="20" selection-end-column="179" />
+            <state relative-caret-position="360">
+              <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/system/Utilities.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="19" column="43" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/module-info.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -89,17 +123,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/com/terkea/secondary.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/SecondaryController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/PrimaryController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/system/Utilities.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/controller/PrimaryController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/com/terkea/primary.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/controller/SecondaryController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/terkea/App.java" />
         <option value="$PROJECT_DIR$/src/main/resources/com/terkea/LandingPage.fxml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/module-info.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/terkea/App.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/com/terkea/secondary.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/controller/LandingPageController.java" />
       </list>
     </option>
@@ -149,11 +183,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="60" />
-    <option name="y" value="-19" />
-    <option name="width" value="1612" />
-    <option name="height" value="876" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -161,7 +195,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -224,6 +257,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -331,7 +365,7 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.18230277" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.19083156" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.3336887" />
       <window_info id="Designer" order="3" />
@@ -418,49 +452,7 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/system/Utilities.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="19" column="43" lean-forward="true" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/com/terkea/primary.fxml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/com/terkea/secondary.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/module-info.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/SecondaryController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -474,15 +466,59 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/com/terkea/LandingPage.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="179" selection-start-line="20" selection-start-column="179" selection-end-line="20" selection-end-column="179" />
+        <state relative-caret-position="360">
+          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/system/Utilities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="19" column="43" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/module-info.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1810#1811#0" expanded="true" />
+            <element signature="e#1834#1835#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/com/terkea/CreateServer.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/LandingPageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="25" column="55" lean-forward="true" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+        <state relative-caret-position="318">
+          <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

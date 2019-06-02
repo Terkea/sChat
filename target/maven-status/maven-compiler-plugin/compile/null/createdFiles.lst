@@ -1,5 +1,5 @@
-com\terkea\controller\PrimaryController.class
 com\terkea\system\Utilities.class
 module-info.class
 com\terkea\App.class
 com\terkea\controller\SecondaryController.class
+com\terkea\controller\LandingPageController.class

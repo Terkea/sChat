@@ -11,6 +11,6 @@ public class SecondaryController {
 
     @FXML
     private void switchToPrimary(ActionEvent event) throws IOException {
-        App.changeStage("primary", event, 800, 600, "TEST");
+        App.changeStage("LandingPage", event, 800, 600, "TEST");
     }
 }

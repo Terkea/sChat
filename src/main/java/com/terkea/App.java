@@ -18,8 +18,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"));
+        scene = new Scene(loadFXML("LandingPage"));
         stage.setScene(scene);
+        stage.setHeight(600);
+        stage.setWidth(400);
+        stage.setTitle("sChat - Better safe than sorry");
         stage.show();
     }
 

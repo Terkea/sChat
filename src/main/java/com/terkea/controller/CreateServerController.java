@@ -1,16 +1,15 @@
 package com.terkea.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+
+import com.terkea.App;
 import com.terkea.system.Server;
 import com.terkea.system.Utilities;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.net.ServerSocket;
 
 
 public class CreateServerController {
@@ -27,9 +26,14 @@ public class CreateServerController {
     }
 
     @FXML
-    void createAndJoin() {
+    void createAndJoin(ActionEvent event) {
         Server attempt = new Server();
         attempt.start();
+        try {
+            App.changeStage("Chat", event, 500, 800, "sChat");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

@@ -1,3 +1,4 @@
+com\terkea\controller\ChatController.class
 com\terkea\system\Utilities.class
 com\terkea\controller\CreateServerController.class
 module-info.class

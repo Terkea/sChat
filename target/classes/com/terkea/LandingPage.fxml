@@ -25,11 +25,17 @@
                   <JFXButton fx:id="createServer" onAction="#handleButtonAction" prefHeight="100.0" prefWidth="270.0" style="-fx-background-color: #7297A6;" text="Create Server" textFill="#011526">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
-                     </VBox.margin></JFXButton>
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXButton>
                   <JFXButton fx:id="joinServer" onAction="#handleButtonAction" prefHeight="100.0" prefWidth="270.0" style="-fx-background-color: #7297A6;" text="Join Server" textFill="#011526">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
-                     </VBox.margin></JFXButton>
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXButton>
                </children>
             </VBox>
          </children>

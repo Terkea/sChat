@@ -1,23 +1,21 @@
 package com.terkea.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.terkea.App;
+import com.terkea.system.Utilities;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
 public class LandingPageController {
 
     @FXML
-    private AnchorPane joinServerPane;
-
-    @FXML
-    private AnchorPane welcomePane;
-
-    @FXML
     private JFXButton createServer;
+
+    @FXML
+    private JFXTextArea serverName;
 
     @FXML
     private JFXButton joinServer;
@@ -27,7 +25,7 @@ public class LandingPageController {
         if (event.getSource() == createServer){
             App.setRoot("CreateServer");
         }else if(event.getSource() == joinServer){
-            joinServerPane.toFront();
+            App.setRoot("JoinServer");
         }
     }
 

@@ -1,5 +1,6 @@
 com\terkea\system\Utilities.class
+com\terkea\controller\CreateServerController.class
 module-info.class
 com\terkea\App.class
-com\terkea\controller\SecondaryController.class
 com\terkea\controller\LandingPageController.class
+com\terkea\system\Server.class

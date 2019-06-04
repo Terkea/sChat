@@ -50,6 +50,8 @@ public class App extends Application {
         changeStage.setScene(changeScene);
         changeStage.setHeight(height);
         changeStage.setWidth(width);
+        changeStage.setMinHeight(height);
+        changeStage.setMinWidth(width);
         changeStage.setTitle(title);
         changeStage.show();
 

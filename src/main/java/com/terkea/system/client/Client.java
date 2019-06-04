@@ -51,12 +51,7 @@ public class Client {
                 if(scan.hasNextLine()){
                     serverThread.addNextMessage(scan.nextLine());
                 }
-                // NOTE: scan.hasNextLine waits input (in the other words block this thread's process).
-                // NOTE: If you use buffered reader or something else not waiting way,
-                // NOTE: I recommends write waiting short time like following.
-                // else {
-                //    Thread.sleep(200);
-                // }
+
             }
         }catch(IOException ex){
             System.err.println("Fatal Connection error!");

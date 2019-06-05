@@ -35,6 +35,12 @@ public class CreateServerController {
 
         try {
             App.changeStage("Chat", event, 500, 800, "sChat - Better safe than sorry");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
             ClientController.loadUser(nickname.getText());
         } catch (IOException e) {
             e.printStackTrace();

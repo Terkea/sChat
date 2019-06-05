@@ -2,6 +2,7 @@ package com.terkea.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 
@@ -19,12 +20,16 @@ public class ClientController {
     private TextArea typeMessage;
 
     @FXML
+    private Label test;
+
+    @FXML
     private ScrollPane connectedUsersPane;
 
     private static final int portNumber = 4444;
     private static String stringClient = "CLIENT > ";
     private String host;
-    public static Socket socket;
+    private static Socket socket;
+    private DataOutputStream out;
 
     public String getHost() {
         return host;
@@ -34,6 +39,8 @@ public class ClientController {
         this.host = host;
     }
 
+
+
     public static void loadUser(String userName) throws IOException {
         System.out.println(stringClient + " Trying to connect to the server...");
         new Thread(() -> {
@@ -41,13 +48,12 @@ public class ClientController {
         }).start();
 
         System.out.println(stringClient + "Success");
-
-
     }
 
     private static void createClient(){
         try {
             socket = new Socket("localhost", portNumber);
+
 
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
@@ -56,7 +62,7 @@ public class ClientController {
                 while(!socket.isClosed()){
                     try {
                         if (in.available() > 0){
-                            System.out.println( "CLIENT > " + in.readUTF());
+                            System.out.println("CLIENT > " + in.readUTF());
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -72,10 +78,12 @@ public class ClientController {
 
     @FXML
     private void sendMessage() throws IOException {
-        DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+        out = new DataOutputStream(socket.getOutputStream());
 
-        out.writeUTF(typeMessage.getText());
-        typeMessage.setText("");
+        if (!typeMessage.getText().trim().equals("")){
+            out.writeUTF(typeMessage.getText());
+            typeMessage.setText("");
+        }
     }
 
 }

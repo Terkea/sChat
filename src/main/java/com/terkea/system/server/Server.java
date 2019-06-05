@@ -4,6 +4,7 @@ package com.terkea.system.server;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Server implements Runnable{
@@ -11,7 +12,7 @@ public class Server implements Runnable{
     private static int PORT = 4444;
     private final int serverPort;
     private ServerSocket serverSocket = null;
-    private String server = "SERVER > ";
+    private List<ClientThread> clients; // or "protected static List<ClientThread> clients;"
 
 
     @Override
@@ -21,43 +22,35 @@ public class Server implements Runnable{
 
     }
 
+    public List<ClientThread> getClients(){
+        return clients;
+    }
+
     public Server(int portNumber){
         this.serverPort = portNumber;
     }
 
 
     private void startServer(){
+        clients = new ArrayList<ClientThread>();
         try {
             serverSocket = new ServerSocket(PORT);
-            System.out.println(server + "ON");
-            System.out.println(server + "Waiting for connections...");
-
+            System.out.println("SERVER ON");
+            System.out.println("SERVER > Waiting for connections...");
 
 
 //            ACCEPT ALL CONNECTIONS
             while (true){
                 try {
                     Socket socket = serverSocket.accept();
-                    System.out.println(server + "New connection: " + socket.getRemoteSocketAddress());
-
-                    DataInputStream in = new DataInputStream(socket.getInputStream());
-                    DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-
-                    new Thread(() -> {
-                        while(!socket.isClosed()){
-                            try {
-                                String input = in.readUTF();
-//                                System.out.println("SERVER > " + input);
-                                out.writeUTF(input);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
-
+                    System.out.println("SERVER > New connection: " + socket.getRemoteSocketAddress());
+                    ClientThread client = new ClientThread(this, socket);
+                    Thread thread = new Thread(client);
+                    thread.start();
+                    clients.add(client);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    System.out.println(server + "Accept failed");
+                    System.out.println("SERVER > Accept failed");
                 }
             }
 

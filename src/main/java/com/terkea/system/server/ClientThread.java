@@ -38,7 +38,7 @@ public class ClientThread implements Runnable {
                         // UNCOMMENT TO READ ON SERVER
                         // System.out.println("SERVER > " + input);
                         for (ClientThread thatClient : server.getClients()){
-                            out.writeUTF(input + "GOT FROM SERVER");
+                            out.writeUTF(input + " GOT FROM SERVER");
                         }
                     }
                 } catch (IOException e) {

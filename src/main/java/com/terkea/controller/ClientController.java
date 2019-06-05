@@ -20,13 +20,12 @@ public class ClientController {
     private TextArea typeMessage;
 
     @FXML
-    private Label test;
+    public TextArea muieDragnea;
 
     @FXML
     private ScrollPane connectedUsersPane;
 
     private static final int portNumber = 4444;
-    private static String stringClient = "CLIENT > ";
     private String host;
     private static Socket socket;
     private DataOutputStream out;
@@ -39,30 +38,41 @@ public class ClientController {
         this.host = host;
     }
 
+    public String getUserName() {
+        return userName;
+    }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-    public static void loadUser(String userName) throws IOException {
-        System.out.println(stringClient + " Trying to connect to the server...");
+    public void loadUser(String host, String userName) throws IOException {
+        setHost(host);
+        setUserName(userName);
+
+        System.out.println(getUserName() + " > Trying to connect to the server...");
         new Thread(() -> {
             createClient();
         }).start();
 
-        System.out.println(stringClient + "Success");
+        System.out.println(getUserName() + " > Success");
     }
 
-    private static void createClient(){
+    private void createClient(){
         try {
             socket = new Socket("localhost", portNumber);
 
 
             DataInputStream in = new DataInputStream(socket.getInputStream());
-            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+//            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
             new Thread(()->{
                 while(!socket.isClosed()){
                     try {
                         if (in.available() > 0){
-                            System.out.println("CLIENT > " + in.readUTF());
+                            String input = in.readUTF();
+                            System.out.println(getUserName() + " > " + input);
+//                            muieDragnea.appendText(input);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();

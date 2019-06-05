@@ -1,7 +1,8 @@
+C:\java\sChat\src\main\java\com\terkea\model\Message.java
 C:\java\sChat\src\main\java\com\terkea\controller\CreateServerController.java
-C:\java\sChat\src\main\java\com\terkea\system\Server.java
 C:\java\sChat\src\main\java\com\terkea\system\Utilities.java
-C:\java\sChat\src\main\java\com\terkea\controller\ChatController.java
 C:\java\sChat\src\main\java\module-info.java
 C:\java\sChat\src\main\java\com\terkea\App.java
 C:\java\sChat\src\main\java\com\terkea\controller\LandingPageController.java
+C:\java\sChat\src\main\java\com\terkea\system\server\Server.java
+C:\java\sChat\src\main\java\com\terkea\controller\ClientController.java

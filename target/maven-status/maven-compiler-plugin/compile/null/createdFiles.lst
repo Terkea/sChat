@@ -1,10 +1,8 @@
-com\terkea\controller\ChatController.class
-com\terkea\system\Utilities.class
-com\terkea\App.class
 com\terkea\system\server\Server.class
+com\terkea\system\Utilities.class
 com\terkea\controller\CreateServerController.class
 module-info.class
-com\terkea\system\client\Client.class
-com\terkea\system\client\ServerThread.class
-com\terkea\system\server\ClientThread.class
+com\terkea\App.class
+com\terkea\model\Message.class
+com\terkea\controller\ClientController.class
 com\terkea\controller\LandingPageController.class

@@ -1,59 +1,73 @@
 package com.terkea.system.server;
 
 
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Server implements Runnable{
 
-    private static final int portNumber = 4444;
+    private static int PORT = 4444;
+    private final int serverPort;
+    private ServerSocket serverSocket = null;
+    private String server = "SERVER > ";
 
-    private int serverPort;
-    private List<ClientThread> clients; // or "protected static List<ClientThread> clients;"
 
     @Override
     public void run(){
-        Server server = new Server(portNumber);
+        Server server = new Server(PORT);
         server.startServer();
+
     }
 
     public Server(int portNumber){
         this.serverPort = portNumber;
     }
 
-    public List<ClientThread> getClients(){
-        return clients;
-    }
 
     private void startServer(){
-        clients = new ArrayList<ClientThread>();
-        ServerSocket serverSocket = null;
         try {
-            serverSocket = new ServerSocket(serverPort);
-            acceptClients(serverSocket);
-        } catch (IOException e){
-            System.err.println("Could not listen on port: "+serverPort);
-            System.exit(1);
-        }
-    }
+            serverSocket = new ServerSocket(PORT);
+            System.out.println(server + "ON");
+            System.out.println(server + "Waiting for connections...");
 
-    private void acceptClients(ServerSocket serverSocket){
 
-        System.out.println("server starts port = " + serverSocket.getLocalSocketAddress());
-        while(true){
-            try{
-                Socket socket = serverSocket.accept();
-                System.out.println("accepts : " + socket.getRemoteSocketAddress());
-                ClientThread client = new ClientThread(this, socket);
-                Thread thread = new Thread(client);
-                thread.start();
-                clients.add(client);
-            } catch (IOException ex){
-                System.out.println("Accept failed on : "+serverPort);
+
+//            ACCEPT ALL CONNECTIONS
+            while (true){
+                try {
+                    Socket socket = serverSocket.accept();
+                    System.out.println(server + "New connection: " + socket.getRemoteSocketAddress());
+
+                    DataInputStream in = new DataInputStream(socket.getInputStream());
+                    DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+
+                    new Thread(() -> {
+                        while(!socket.isClosed()){
+                            try {
+                                String input = in.readUTF();
+//                                System.out.println("SERVER > " + input);
+                                out.writeUTF(input);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println(server + "Accept failed");
+                }
             }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
+
+
+
+
 }

@@ -15,6 +15,7 @@ import java.io.IOException;
 public class CreateServerController {
     private static final int portNumber = 4444;
 
+
     @FXML
     private TextField server;
 
@@ -27,15 +28,16 @@ public class CreateServerController {
     }
 
     @FXML
-    void createAndJoin(ActionEvent event) {
+    private void createAndJoin(ActionEvent event) {
         Server attempt = new Server(portNumber);
         Thread createServer = new Thread(attempt);
         createServer.start();
+
         try {
             App.changeStage("Chat", event, 500, 800, "sChat - Better safe than sorry");
+            ClientController.loadUser(nickname.getText());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

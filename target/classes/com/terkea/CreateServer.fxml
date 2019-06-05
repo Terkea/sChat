@@ -53,7 +53,7 @@
                      <font>
                         <Font size="14.0" />
                      </font></TextField>
-                  <TextField fx:id="nickname" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="nickname" text="Anonymous" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
                      </font></TextField>

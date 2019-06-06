@@ -19,6 +19,14 @@ public class ClientThread implements Runnable {
         this.clientName = clientName;
     }
 
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
+
     public ClientThread(Server server, Socket socket) {
         this.server = server;
         this.socket = socket;
@@ -38,7 +46,8 @@ public class ClientThread implements Runnable {
                         // UNCOMMENT TO READ ON SERVER
                         // System.out.println("SERVER > " + input);
                         for (ClientThread thatClient : server.getClients()){
-                            out.writeUTF(input + " GOT FROM SERVER");
+                            DataOutputStream outputParticularClient = new DataOutputStream(thatClient.getSocket().getOutputStream());
+                            outputParticularClient.writeUTF(input + " GOT FROM SERVER");
                         }
                     }
                 } catch (IOException e) {

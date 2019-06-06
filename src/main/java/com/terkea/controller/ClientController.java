@@ -27,7 +27,7 @@ public class ClientController {
     private ScrollPane connectedUsersPane;
 
     private static final int portNumber = 4444;
-    private String host;
+    public String host;
     private static Socket socket;
     private DataOutputStream out;
 
@@ -51,7 +51,7 @@ public class ClientController {
     public void loadUser(String host, String userName) throws IOException {
         setHost(host);
         setUserName(userName);
-
+        System.err.println("HOST ADDRESS: " + getHost() + ":" +portNumber + "\n");
         System.out.println(getUserName() + " > Trying to connect to the server...");
         new Thread(() -> {
             createClient();
@@ -63,10 +63,10 @@ public class ClientController {
 
 
     @FXML
-    private void createClient(){
+    public void createClient(){
         try {
             socket = new Socket("localhost", portNumber);
-
+//            socket = new Socket(getHost(), portNumber);
 
             DataInputStream in = new DataInputStream(socket.getInputStream());
             new Thread(()->{

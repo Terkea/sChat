@@ -3,6 +3,7 @@ com\terkea\App.class
 com\terkea\controller\ClientController.class
 com\terkea\controller\ServerThread.class
 com\terkea\system\server\Server.class
+com\terkea\controller\CreateClientController.class
 com\terkea\controller\CreateServerController.class
 module-info.class
 com\terkea\model\Message.class

@@ -13,7 +13,7 @@
          <children>
             <ScrollPane fx:id="allMessages" prefHeight="444.0" prefWidth="600.0" style="-fx-background-color: transparent; -fx-background: transparent;" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <content>
-                  <TextArea fx:id="muieDragnea" prefHeight="387.0" prefWidth="495.0" />
+                  <TextArea fx:id="muieDragnea" prefHeight="387.0" prefWidth="495.0" text="muie dragnea&#10;" />
                </content></ScrollPane>
             <TextArea fx:id="typeMessage" prefHeight="50.0" prefWidth="504.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="86.0" />
             <Button layoutX="522.0" layoutY="439.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="50.0" prefWidth="75.0" text="Send" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="5.0" />

@@ -25,7 +25,7 @@ public class LandingPageController {
         if (event.getSource() == createServer){
             App.setRoot("CreateServer");
         }else if(event.getSource() == joinServer){
-            App.setRoot("JoinServer");
+            App.setRoot("CreateClient");
         }
     }
 

@@ -1,5 +1,6 @@
 package com.terkea.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,7 +21,7 @@ public class ClientController {
     private TextArea typeMessage;
 
     @FXML
-    public TextArea muieDragnea;
+    public TextArea muieDragnea = new TextArea();
 
     @FXML
     private ScrollPane connectedUsersPane;
@@ -46,6 +47,7 @@ public class ClientController {
         this.userName = userName;
     }
 
+    @FXML
     public void loadUser(String host, String userName) throws IOException {
         setHost(host);
         setUserName(userName);
@@ -56,23 +58,23 @@ public class ClientController {
         }).start();
 
         System.out.println(getUserName() + " > Success");
+
     }
 
+
+    @FXML
     private void createClient(){
         try {
             socket = new Socket("localhost", portNumber);
 
 
             DataInputStream in = new DataInputStream(socket.getInputStream());
-//            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-
             new Thread(()->{
                 while(!socket.isClosed()){
                     try {
                         if (in.available() > 0){
                             String input = in.readUTF();
                             System.out.println(getUserName() + " > " + input);
-//                            muieDragnea.appendText(input);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -82,7 +84,6 @@ public class ClientController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 

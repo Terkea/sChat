@@ -1,12 +1,17 @@
 package com.terkea.controller;
 
 import com.terkea.model.Message;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ClientController {
 
@@ -28,6 +33,7 @@ public class ClientController {
     public String host;
     private static Socket socket;
     private DataOutputStream out;
+    public ObservableList<Message> chat = FXCollections.observableArrayList();
 
     public String getHost() {
         return host;
@@ -58,6 +64,13 @@ public class ClientController {
 
         System.out.println(getUserName() + " > Connected");
 
+        chat.addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                System.out.println("Something happened");
+            }
+        });
+
     }
 
 
@@ -74,6 +87,7 @@ public class ClientController {
                             String input = in.readUTF();
                             Message inputMessage = Message.fromJSON(input);
                             System.out.println(inputMessage.getUserName() + " > " + inputMessage.getMessage());
+                            chat.add(inputMessage);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();

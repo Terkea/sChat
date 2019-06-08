@@ -38,13 +38,10 @@ public class ClientThread implements Runnable {
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
-//            out.writeUTF("HI FROM SERVER");
             while (!socket.isClosed()) {
                 try {
                     if (in.available() > 0) {
                         String input = in.readUTF();
-                        // UNCOMMENT TO READ ON SERVER
-                        // System.out.println("SERVER > " + input);
                         for (ClientThread thatClient : server.getClients()){
                             DataOutputStream outputParticularClient = new DataOutputStream(thatClient.getSocket().getOutputStream());
                             outputParticularClient.writeUTF(input);

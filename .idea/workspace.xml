@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03dac0be-6f3c-49d6-9511-dbd7e3631a9e" name="Default Changelist" comment="folder structure">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terkea/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terkea/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/terkea/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terkea/controller/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terkea/system/server/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terkea/system/server/ClientThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terkea/controller/CreateServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terkea/controller/CreateServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terkea/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terkea/model/Message.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -18,56 +20,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/ClientController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="67" column="42" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
+            <state relative-caret-position="351">
+              <caret line="93" column="25" lean-forward="true" selection-start-line="93" selection-start-column="25" selection-end-line="93" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#722#723#0" expanded="true" />
+                <element signature="e#749#750#0" expanded="true" />
+                <element signature="e#789#790#0" expanded="true" />
+                <element signature="e#821#822#0" expanded="true" />
+                <element signature="e#856#857#0" expanded="true" />
+                <element signature="e#887#888#0" expanded="true" />
+                <element signature="e#935#936#0" expanded="true" />
+                <element signature="e#975#976#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/CreateServerController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/model/Message.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
-              <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+            <state relative-caret-position="271">
+              <caret line="30" column="36" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="36" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#140#141#0" expanded="true" />
+                <element signature="e#171#172#0" expanded="true" />
+                <element signature="e#219#220#0" expanded="true" />
+                <element signature="e#259#260#0" expanded="true" />
+                <element signature="e#293#294#0" expanded="true" />
+                <element signature="e#323#324#0" expanded="true" />
+                <element signature="e#369#370#0" expanded="true" />
+                <element signature="e#407#408#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/system/server/ClientThread.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="46" column="67" lean-forward="true" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/ServerThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/CreateClientController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+            <state relative-caret-position="431">
+              <caret line="72" column="39" lean-forward="true" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -123,15 +119,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/system/client/Client.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/controller/ChatController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/system/client/ServerThread.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/terkea/model/Message.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/system/server/Server.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/terkea/App.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/terkea/controller/CreateServerController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/com/terkea/CreateClient.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/controller/LandingPageController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/controller/CreateClientController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/system/server/ClientThread.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/terkea/controller/ClientController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/terkea/controller/CreateServerController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/terkea/model/Message.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/terkea/App.java" />
       </list>
     </option>
   </component>
@@ -193,7 +189,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -283,6 +278,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -421,7 +417,7 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.22068231" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.2249467" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.3336887" />
       <window_info id="Designer" order="3" />
@@ -584,37 +580,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/system/client/Client.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/system/client/ServerThread.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/model/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-          <folding>
-            <element signature="e#140#141#0" expanded="true" />
-            <element signature="e#171#172#0" expanded="true" />
-            <element signature="e#219#220#0" expanded="true" />
-            <element signature="e#259#260#0" expanded="true" />
-            <element signature="e#293#294#0" expanded="true" />
-            <element signature="e#323#324#0" expanded="true" />
-            <element signature="e#369#370#0" expanded="true" />
-            <element signature="e#407#408#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/module-info.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/system/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="44" column="58" selection-start-line="44" selection-start-column="58" selection-end-line="44" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -626,71 +595,51 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/com/terkea/Chat.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/com/terkea/LandingPage.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="30" column="40" selection-end-line="44" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/com/terkea/CreateServer.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
           <caret line="42" column="26" lean-forward="true" selection-end-line="78" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/com/terkea/CreateClient.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="16" column="201" selection-start-line="16" selection-start-column="201" selection-end-line="16" selection-end-column="201" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/LandingPageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="61" column="26" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/CreateClientController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/CreateServerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+        <state relative-caret-position="360">
+          <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/LandingPageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -706,8 +655,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/system/server/ClientThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="46" column="67" lean-forward="true" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
+        <state relative-caret-position="-209">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#322#323#0" expanded="true" />
+            <element signature="e#355#356#0" expanded="true" />
+            <element signature="e#407#408#0" expanded="true" />
+            <element signature="e#451#452#0" expanded="true" />
+            <element signature="e#484#485#0" expanded="true" />
+            <element signature="e#513#514#0" expanded="true" />
+            <element signature="e#557#558#0" expanded="true" />
+            <element signature="e#593#594#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/CreateClientController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/system/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -716,8 +693,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/ClientController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="67" column="42" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
+        <state relative-caret-position="351">
+          <caret line="93" column="25" lean-forward="true" selection-start-line="93" selection-start-column="25" selection-end-line="93" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#722#723#0" expanded="true" />
+            <element signature="e#749#750#0" expanded="true" />
+            <element signature="e#789#790#0" expanded="true" />
+            <element signature="e#821#822#0" expanded="true" />
+            <element signature="e#856#857#0" expanded="true" />
+            <element signature="e#887#888#0" expanded="true" />
+            <element signature="e#935#936#0" expanded="true" />
+            <element signature="e#975#976#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/model/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="30" column="36" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="36" />
+          <folding>
+            <element signature="e#140#141#0" expanded="true" />
+            <element signature="e#171#172#0" expanded="true" />
+            <element signature="e#219#220#0" expanded="true" />
+            <element signature="e#259#260#0" expanded="true" />
+            <element signature="e#293#294#0" expanded="true" />
+            <element signature="e#323#324#0" expanded="true" />
+            <element signature="e#369#370#0" expanded="true" />
+            <element signature="e#407#408#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="72" column="39" lean-forward="true" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -1,5 +1,6 @@
 package com.terkea;
 
+import com.terkea.model.Message;
 import com.terkea.system.Utilities;
 import javafx.application.Application;
 import javafx.event.ActionEvent;

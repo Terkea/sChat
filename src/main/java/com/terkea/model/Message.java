@@ -27,4 +27,15 @@ public class Message {
                 ", message='" + message + '\'' +
                 '}';
     }
+
+    public static Message fromString(String fromString){
+        Message message = new Message();
+        String withoutDataType = fromString.replaceAll("Message", "");
+        String userNameFs = withoutDataType.substring(0, withoutDataType.indexOf("',"));
+        String userNameSs = userNameFs.substring(userNameFs.indexOf("='")).replaceAll("='", "");
+        String text = withoutDataType.substring(withoutDataType.indexOf(", message='")).replaceAll(", message='", "").replaceAll("'}", "");
+        message.setUserName(userNameSs);
+        message.setMessage(text);
+        return message;
+    }
 }

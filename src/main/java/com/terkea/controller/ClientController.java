@@ -65,8 +65,7 @@ public class ClientController {
     @FXML
     public void createClient(){
         try {
-            socket = new Socket("localhost", portNumber);
-//            socket = new Socket(getHost(), portNumber);
+            socket = new Socket(getHost(), portNumber);
 
             DataInputStream in = new DataInputStream(socket.getInputStream());
             new Thread(()->{

@@ -36,7 +36,7 @@ public class CreateServerController {
         try {
             App.changeStage("Chat", event, 500, 800, "sChat - Better safe than sorry");
             ClientController newClient = new ClientController();
-            newClient.loadUser(server.getText(), nickname.getText());
+            newClient.loadUser("localhost", nickname.getText());
         } catch (IOException e) {
             e.printStackTrace();
         }

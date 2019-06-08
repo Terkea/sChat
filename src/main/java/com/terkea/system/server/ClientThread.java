@@ -38,7 +38,7 @@ public class ClientThread implements Runnable {
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
-            out.writeUTF("HI FROM SERVER");
+//            out.writeUTF("HI FROM SERVER");
             while (!socket.isClosed()) {
                 try {
                     if (in.available() > 0) {
@@ -47,7 +47,7 @@ public class ClientThread implements Runnable {
                         // System.out.println("SERVER > " + input);
                         for (ClientThread thatClient : server.getClients()){
                             DataOutputStream outputParticularClient = new DataOutputStream(thatClient.getSocket().getOutputStream());
-                            outputParticularClient.writeUTF(input + " GOT FROM SERVER");
+                            outputParticularClient.writeUTF(input);
                         }
                     }
                 } catch (IOException e) {

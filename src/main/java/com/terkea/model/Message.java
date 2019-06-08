@@ -1,6 +1,12 @@
 package com.terkea.model;
 
-public class Message {
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.io.Serializable;
+
+public class Message implements Serializable {
     private String userName;
     private String message;
 
@@ -20,6 +26,14 @@ public class Message {
         this.message = message;
     }
 
+    public Message(String userName, String message) {
+        this.userName = userName;
+        this.message = message;
+    }
+
+    public Message() {
+    }
+
     @Override
     public String toString() {
         return "Message{" +
@@ -28,14 +42,36 @@ public class Message {
                 '}';
     }
 
-    public static Message fromString(String fromString){
-        Message message = new Message();
-        String withoutDataType = fromString.replaceAll("Message", "");
-        String userNameFs = withoutDataType.substring(0, withoutDataType.indexOf("',"));
-        String userNameSs = userNameFs.substring(userNameFs.indexOf("='")).replaceAll("='", "");
-        String text = withoutDataType.substring(withoutDataType.indexOf(", message='")).replaceAll(", message='", "").replaceAll("'}", "");
-        message.setUserName(userNameSs);
-        message.setMessage(text);
-        return message;
+    /**CONVERTS THE MESSAGE OBJECT TO JSON AND RETURNS IT AS A STRING
+     * @param message
+     * @return
+     */
+    public static String toJSON(Message message){
+        ObjectMapper mapper = new ObjectMapper();
+        Message test = message;
+
+        String json = null;
+        try {
+            json = mapper.writeValueAsString(test);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+    /**
+     * GETS THE OBJECT FROM A JSON STRING
+     * @param message
+     * @return
+     */
+    public static Message fromJSON(String message){
+        ObjectMapper mapper = new ObjectMapper();
+        Message test = null;
+        try {
+            test = mapper.readValue(message, Message.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return test;
     }
 }

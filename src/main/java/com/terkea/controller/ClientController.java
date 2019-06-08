@@ -1,9 +1,7 @@
 package com.terkea.controller;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
+import com.terkea.model.Message;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 
@@ -12,7 +10,7 @@ import java.net.Socket;
 
 public class ClientController {
 
-    private String userName;
+    private static String userName;
 
     @FXML
     private ScrollPane allMessages;
@@ -48,16 +46,17 @@ public class ClientController {
     }
 
     @FXML
-    public void loadUser(String host, String userName) throws IOException {
-        setHost(host);
+    public void loadUser(String host, String userName){
         setUserName(userName);
+        setHost(host);
+        System.err.println(getUserName());
         System.err.println("HOST ADDRESS: " + getHost() + ":" +portNumber + "\n");
         System.out.println(getUserName() + " > Trying to connect to the server...");
         new Thread(() -> {
             createClient();
         }).start();
 
-        System.out.println(getUserName() + " > Success");
+        System.out.println(getUserName() + " > Connected");
 
     }
 
@@ -73,7 +72,8 @@ public class ClientController {
                     try {
                         if (in.available() > 0){
                             String input = in.readUTF();
-                            System.out.println(getUserName() + " > " + input);
+                            Message inputMessage = Message.fromJSON(input);
+                            System.out.println(inputMessage.getUserName() + " > " + inputMessage.getMessage());
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -89,9 +89,9 @@ public class ClientController {
     @FXML
     private void sendMessage() throws IOException {
         out = new DataOutputStream(socket.getOutputStream());
-
         if (!typeMessage.getText().trim().equals("")){
-            out.writeUTF(typeMessage.getText());
+            Message newMessage = new Message(getUserName(), typeMessage.getText());
+            out.writeUTF(Message.toJSON(newMessage));
             typeMessage.setText("");
         }
     }

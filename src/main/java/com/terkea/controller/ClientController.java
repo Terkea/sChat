@@ -161,7 +161,7 @@ public class ClientController {
                     Label user = new Label(allClientsConnected.get(allClientsConnected.size()-1).getName());
                     setStyleForUsers(user);
 
-                    Label newConnection = new Label(allClientsConnected.get(allClientsConnected.size()-1).getName().toUpperCase() + "HAS JOINED THE CHAT ROOM");
+                    Label newConnection = new Label(allClientsConnected.get(allClientsConnected.size()-1).getName().toUpperCase() + " HAS JOINED THE CHAT ROOM");
                     setStyleForNewClient(newConnection);
 
                     connectedUsers.getChildren().add(user);

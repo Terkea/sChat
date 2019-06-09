@@ -1,11 +1,32 @@
 package com.terkea.model;
 
-public class Client {
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.io.Serializable;
+
+public class Client implements Serializable {
     private String name;
     private String public_key;
     private String private_key;
     private String ip;
     private String listening_port;
+
+    public Client() {
+    }
+
+    public Client(String name, String public_key, String private_key, String ip, String listening_port) {
+        this.name = name;
+        this.public_key = public_key;
+        this.private_key = private_key;
+        this.ip = ip;
+        this.listening_port = listening_port;
+    }
+
+    public Client(String name) {
+        this.name = name;
+    }
 
     public String getIp() {
         return ip;
@@ -56,6 +77,39 @@ public class Client {
                 ", ip='" + ip + '\'' +
                 ", listening_port='" + listening_port + '\'' +
                 '}';
+    }
+
+    /**CONVERTS THE MESSAGE OBJECT TO JSON AND RETURNS IT AS A STRING
+     * @param client
+     * @return
+     */
+    public static String toJSON(Client client){
+        ObjectMapper mapper = new ObjectMapper();
+        Client test = client;
+
+        String json = null;
+        try {
+            json = mapper.writeValueAsString(test);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+    /**
+     * GETS THE OBJECT FROM A JSON STRING
+     * @param clientString
+     * @return
+     */
+    public static Client fromJSON(String clientString){
+        ObjectMapper mapper = new ObjectMapper();
+        Client test = null;
+        try {
+            test = mapper.readValue(clientString, Client.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return test;
     }
 
 }

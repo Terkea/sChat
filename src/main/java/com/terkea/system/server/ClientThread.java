@@ -1,5 +1,7 @@
 package com.terkea.system.server;
 
+import com.terkea.model.Message;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -42,6 +44,12 @@ public class ClientThread implements Runnable {
                 try {
                     if (in.available() > 0) {
                         String input = in.readUTF();
+                        if (Message.fromJSON(input).getUserName().equals("REGISTER")){
+                            Message specialMessage = Message.fromJSON(input);
+                            specialMessage.setUserName("SERVER");
+                            input = Message.toJSON(specialMessage);
+
+                        }
                         for (ClientThread thatClient : server.getClients()){
                             DataOutputStream outputParticularClient = new DataOutputStream(thatClient.getSocket().getOutputStream());
                             outputParticularClient.writeUTF(input);

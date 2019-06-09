@@ -76,7 +76,7 @@ public class ClientController {
     private void setStyleForOtherClient(Label message, Label name){
         String style = "-fx-font-size: 14;" +
                 "-fx-background-color:  #e7e6ec;" +
-                "-fx-background-radius: 0 5 15 10;";
+                "-fx-background-radius: 0 10 15 15;";
         message.setStyle(style);
         message.setMinWidth(chatScrollPane.getWidth()-5);
         message.setWrapText(true);
@@ -88,10 +88,23 @@ public class ClientController {
         name.setAlignment(CENTER_LEFT);
     }
 
+    private void setStyleForNewClient(Label label){
+        String style = "-fx-font-size: 14;" +
+                "-fx-background-color:  #707070;" +
+                "-fx-background-radius: 2 2 2 2;";
+
+        label.setPadding(new Insets(10, 10, 10, 10));
+        label.setMinWidth(chatScrollPane.getWidth()-5);
+        label.setStyle(style);
+        label.setAlignment(CENTER);
+        label.setWrapText(true);
+        label.setTextFill(Color.WHITE);
+    }
+
     private void setStyleForMyClient(Label message, Label name){
         String style = "-fx-font-size: 14;" +
                 "-fx-background-color:   #79BED9;" +
-                "-fx-background-radius: 5 0 10 15;";
+                "-fx-background-radius: 10 0 15 15;";
         message.setStyle(style);
         message.setMinWidth(chatScrollPane.getWidth()-5);
         message.setWrapText(true);
@@ -105,14 +118,13 @@ public class ClientController {
     }
 
     private void setStyleForUsers(Label user){
-        String style = "-fx-font-size: 12;";
-
         user.setPadding(new Insets(10, 10, 10, 10));
-        String clientNameStyle = "-fx-font-size: 12;";
+        String clientNameStyle = "-fx-font-size: 14;";
         user.setMinWidth(usersScrollPane.getWidth()-5);
         user.setStyle(clientNameStyle);
         user.setAlignment(CENTER);
         user.setWrapText(true);
+
     }
 
 
@@ -124,7 +136,6 @@ public class ClientController {
             public void invalidated(Observable observable) {
                 Platform.runLater(()->{
                     chatScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-//                    System.out.println("LAST MESSAGE: " + chat.get(chat.size()-1).getUserName() + " > " +chat.get(chat.size()-1).getMessage() );
                     Label user = new Label(chat.get(chat.size()-1).getUserName());
                     Label message = new Label(chat.get(chat.size()-1).getMessage());
 
@@ -147,11 +158,15 @@ public class ClientController {
             public void invalidated(Observable observable) {
                 Platform.runLater(()->{
                     usersScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-//                    System.out.println("LAST MESSAGE: " + chat.get(chat.size()-1).getUserName() + " > " +chat.get(chat.size()-1).getMessage() );
                     Label user = new Label(allClientsConnected.get(allClientsConnected.size()-1).getName());
                     setStyleForUsers(user);
 
+                    Label newConnection = new Label(allClientsConnected.get(allClientsConnected.size()-1).getName().toUpperCase() + "HAS JOINED THE CHAT ROOM");
+                    setStyleForNewClient(newConnection);
+
                     connectedUsers.getChildren().add(user);
+                    displayChat.getChildren().add(newConnection);
+                    displayChat.setMargin(newConnection, new Insets(0, 0,10,0));
                 });
             }
         });

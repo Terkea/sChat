@@ -7,6 +7,12 @@ module com.terkea {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.core;
     requires jackson.annotations;
+
+    requires org.kordamp.iconli.core;
+    requires org.kordamp.ikonli.javafx;
+
+    requires org.kordamp.ikonli.fontawesome;
+
     exports com.terkea.model;
 
     opens com.terkea to javafx.fxml;

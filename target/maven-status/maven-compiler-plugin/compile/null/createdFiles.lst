@@ -2,6 +2,7 @@ com\terkea\system\Utilities.class
 com\terkea\controller\ClientController$1.class
 com\terkea\App.class
 com\terkea\controller\ClientController.class
+com\terkea\controller\ClientController$2.class
 com\terkea\controller\ServerThread.class
 com\terkea\system\server\Server.class
 com\terkea\controller\CreateClientController.class

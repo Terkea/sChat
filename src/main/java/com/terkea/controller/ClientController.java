@@ -18,8 +18,7 @@ import javafx.scene.paint.Color;
 import java.io.*;
 import java.net.Socket;
 
-import static javafx.geometry.Pos.CENTER_LEFT;
-import static javafx.geometry.Pos.CENTER_RIGHT;
+import static javafx.geometry.Pos.*;
 
 
 public class ClientController {
@@ -35,6 +34,10 @@ public class ClientController {
 
     @FXML
     private ScrollPane chatScrollPane;
+
+
+    @FXML
+    private ScrollPane usersScrollPane;
 
 
     private static String userName;
@@ -71,12 +74,11 @@ public class ClientController {
     }
 
     private void setStyleForOtherClient(Label message, Label name){
-        String clientTextStyle = "-fx-font-size: 14;" +
+        String style = "-fx-font-size: 14;" +
                 "-fx-background-color:  #e7e6ec;" +
                 "-fx-background-radius: 0 5 15 10;";
-        message.setStyle(clientTextStyle);
+        message.setStyle(style);
         message.setMinWidth(chatScrollPane.getWidth()-5);
-        message.setStyle(clientTextStyle);
         message.setWrapText(true);
         message.setPadding(new Insets(10, 10, 10, 10));
 
@@ -87,10 +89,10 @@ public class ClientController {
     }
 
     private void setStyleForMyClient(Label message, Label name){
-        String clientTextStyle = "-fx-font-size: 14;" +
+        String style = "-fx-font-size: 14;" +
                 "-fx-background-color:   #79BED9;" +
                 "-fx-background-radius: 5 0 10 15;";
-        message.setStyle(clientTextStyle);
+        message.setStyle(style);
         message.setMinWidth(chatScrollPane.getWidth()-5);
         message.setWrapText(true);
         message.setPadding(new Insets(10, 10, 10, 10));
@@ -102,6 +104,16 @@ public class ClientController {
         name.setAlignment(CENTER_RIGHT);
     }
 
+    private void setStyleForUsers(Label user){
+        String style = "-fx-font-size: 12;";
+
+        user.setPadding(new Insets(10, 10, 10, 10));
+        String clientNameStyle = "-fx-font-size: 12;";
+        user.setMinWidth(usersScrollPane.getWidth()-5);
+        user.setStyle(clientNameStyle);
+        user.setAlignment(CENTER);
+        user.setWrapText(true);
+    }
 
 
 
@@ -129,6 +141,20 @@ public class ClientController {
                 });
             }
         });
+
+        allClientsConnected.addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                Platform.runLater(()->{
+                    usersScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+//                    System.out.println("LAST MESSAGE: " + chat.get(chat.size()-1).getUserName() + " > " +chat.get(chat.size()-1).getMessage() );
+                    Label user = new Label(allClientsConnected.get(allClientsConnected.size()-1).getName());
+                    setStyleForUsers(user);
+
+                    connectedUsers.getChildren().add(user);
+                });
+            }
+        });
     }
 
 
@@ -138,8 +164,6 @@ public class ClientController {
         setHost(host);
         setClient(new Client(getUserName()));
 
-        System.err.println(getUserName());
-        System.err.println("HOST ADDRESS: " + getHost() + ":" +portNumber + "\n");
         System.out.println(getUserName() + " > Trying to connect to the server...");
 
         new Thread(() -> {
@@ -171,7 +195,7 @@ public class ClientController {
                             String input = in.readUTF();
                             Message inputMessage = Message.fromJSON(input);
                             if (inputMessage.getUserName().equals("SERVER")){
-                                System.err.println("REGISTER NEW CLIENT");
+                                System.err.println(Client.fromJSON(inputMessage.getMessage()));
                                 allClientsConnected.add(Client.fromJSON(inputMessage.getMessage()));
                             }else{
                                 chat.add(inputMessage);

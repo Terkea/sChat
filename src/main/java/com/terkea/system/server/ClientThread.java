@@ -1,5 +1,6 @@
 package com.terkea.system.server;
 
+import com.terkea.model.Client;
 import com.terkea.model.Message;
 
 import java.io.DataInputStream;
@@ -45,8 +46,15 @@ public class ClientThread implements Runnable {
                     if (in.available() > 0) {
                         String input = in.readUTF();
                         if (Message.fromJSON(input).getUserName().equals("REGISTER")){
+
                             Message specialMessage = Message.fromJSON(input);
                             specialMessage.setUserName("SERVER");
+
+                            Client test = Client.fromJSON(specialMessage.getMessage());
+                            test.setIp(socket.getInetAddress().toString());
+                            test.setListening_port(String.valueOf(socket.getPort()));
+                            specialMessage.setMessage(Client.toJSON(test));
+
                             input = Message.toJSON(specialMessage);
 
                         }

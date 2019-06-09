@@ -39,22 +39,7 @@
             </AnchorPane>
             <ScrollPane fx:id="usersScrollPane" prefHeight="520.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-background: transparent;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="65.0">
                <content>
-                  <VBox fx:id="connectedUsers">
-                     <children>
-                        <Label text="Marian">
-                           <VBox.margin>
-                              <Insets bottom="15.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label text="Anon">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children></VBox>
+                  <VBox fx:id="connectedUsers" />
                </content></ScrollPane>
          </children>
       </AnchorPane>

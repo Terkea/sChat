@@ -203,6 +203,7 @@ public class ClientController {
             Message registerclient = new Message(getUserName(), Client.toJSON(getClient()), "REGISTER");
             out.writeUTF(Message.toJSON(registerclient));
 
+//            disconnectClient();
             new Thread(() -> {
                 while (!socket.isClosed()) {
                     try {
@@ -228,7 +229,7 @@ public class ClientController {
 
     public void disconnectClient() throws IOException {
         out = new DataOutputStream(socket.getOutputStream());
-        Message disconnect = new Message(getUserName(), "DISCONNECT", "UNREGISTER");
+        Message disconnect = new Message(getUserName(), Client.toJSON(getClient()), "UNREGISTER");
         out.writeUTF(Message.toJSON(disconnect));
     }
 

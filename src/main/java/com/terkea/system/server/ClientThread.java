@@ -16,7 +16,7 @@ public class ClientThread implements Runnable {
     private Socket socket;
     private Server server;
     private String clientName;
-    private List<Client> otherConnections;
+    private ArrayList<Client> otherConnections;
 
     public String getClientName() {
         return clientName;
@@ -52,16 +52,13 @@ public class ClientThread implements Runnable {
 
                         if (Message.fromJSON(input).getType().equals("REGISTER")) {
                             input = registerHandler(input);
+                        }else if (Message.fromJSON(input).getType().equals("UNREGISTER")) {
+                             unregisterHandler(input);
                         }
 
-                        for (ClientThread thatClient : server.getClients()) {
-                            DataOutputStream outputParticularClient = new DataOutputStream(thatClient.getSocket().getOutputStream());
-                            outputParticularClient.writeUTF(input);
-                        }
+                        outputHandler(input);
 
                     }
-                } catch (SocketException se) {
-                    se.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -69,6 +66,10 @@ public class ClientThread implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void unregisterHandler(String input) {
+        
     }
 
     public String registerHandler(String input) {
@@ -81,5 +82,12 @@ public class ClientThread implements Runnable {
         specialMessage.setMessage(Client.toJSON(test));
 
         return Message.toJSON(specialMessage);
+    }
+
+    public void outputHandler(String input) throws IOException {
+        for (ClientThread thatClient : server.getClients()) {
+            DataOutputStream outputParticularClient = new DataOutputStream(thatClient.getSocket().getOutputStream());
+            outputParticularClient.writeUTF(input);
+        }
     }
 }

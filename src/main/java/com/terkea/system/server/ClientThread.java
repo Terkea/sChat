@@ -44,9 +44,10 @@ public class ClientThread implements Runnable {
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
+
             while (!socket.isClosed()) {
                 try {
-                    if (in.available() > 0) {
+                    if (in.available() > 0 && in.available()!=-1){
                         String input = in.readUTF();
                         if (Message.fromJSON(input).getUserName().equals("REGISTER")){
 
@@ -67,11 +68,8 @@ public class ClientThread implements Runnable {
                         }
                         for (ClientThread thatClient : server.getClients()){
                             DataOutputStream outputParticularClient = new DataOutputStream(thatClient.getSocket().getOutputStream());
-                            if (!thatClient.getSocket().isClosed() && thatClient.getSocket().isConnected()){
-                                outputParticularClient.writeUTF(input);
-                            }else{
-                                System.out.println("COULDNT SEND MESSAGE TO CLIENT, PROBABLY HE DISCONNECTED");
-                            }
+                            outputParticularClient.writeUTF(input);
+
                         }
                     }
                 } catch (IOException e) {

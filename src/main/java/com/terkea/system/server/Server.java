@@ -38,7 +38,6 @@ public class Server implements Runnable{
             System.out.println("SERVER ON");
             System.out.println("SERVER > Waiting for connections...");
 
-
 //            ACCEPT ALL CONNECTIONS
             while (true){
                 try {
@@ -48,6 +47,9 @@ public class Server implements Runnable{
                     Thread thread = new Thread(client);
                     thread.start();
                     clients.add(client);
+
+
+
                 } catch (IOException e) {
                     e.printStackTrace();
                     System.out.println("SERVER > Accept failed");

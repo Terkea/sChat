@@ -80,12 +80,12 @@ public class ClientController {
                 "-fx-background-color:  #e7e6ec;" +
                 "-fx-background-radius: 0 10 15 15;";
         message.setStyle(style);
-        message.setMinWidth(chatScrollPane.getWidth()-5);
+        message.setMinWidth(chatScrollPane.getWidth()-30);
         message.setWrapText(true);
         message.setPadding(new Insets(10, 10, 10, 10));
 
         String clientNameStyle = "-fx-font-size: 12;";
-        name.setMinWidth(chatScrollPane.getWidth()-5);
+        name.setMinWidth(chatScrollPane.getWidth()-30);
         name.setStyle(clientNameStyle);
         name.setAlignment(CENTER_LEFT);
     }
@@ -208,7 +208,7 @@ public class ClientController {
 
                 while(!socket.isClosed()){
                     try {
-                        if (in.available() > 0){
+                        if (in.available() > 0 && in.available()!=-1){
                             String input = in.readUTF();
                             Message inputMessage = Message.fromJSON(input);
                             if (inputMessage.getUserName().equals("SERVER")){
@@ -229,11 +229,6 @@ public class ClientController {
         }
     }
 
-    public static void disconnect() throws IOException {
-        out.close();
-        socket.close();
-        System.out.println("CLIENT DISCONNECTED");
-    }
 
     @FXML
     void KeyHandler(KeyEvent event) throws IOException {

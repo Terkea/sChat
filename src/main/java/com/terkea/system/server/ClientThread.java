@@ -7,12 +7,14 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ClientThread implements Runnable {
 
     private Socket socket;
     private Server server;
     private String clientName;
+    private ArrayList<Client> otherConnections = new ArrayList<>();
 
     public String getClientName() {
         return clientName;
@@ -46,6 +48,16 @@ public class ClientThread implements Runnable {
                     if (in.available() > 0) {
                         String input = in.readUTF();
                         if (Message.fromJSON(input).getUserName().equals("REGISTER")){
+                            Message oldConnection = null;
+                            if (otherConnections.size() >= 1){
+                                for (int i = 0; i<otherConnections.size(); i++){
+                                oldConnection.setUserName("SERVER");
+                                oldConnection.setMessage(Client.toJSON(otherConnections.get(i)));
+
+                                DataOutputStream thisClient = new DataOutputStream(socket.getOutputStream());
+                                thisClient.writeUTF(Message.toJSON(oldConnection));
+                                }
+                            }
 
                             Message specialMessage = Message.fromJSON(input);
                             specialMessage.setUserName("SERVER");
@@ -67,8 +79,6 @@ public class ClientThread implements Runnable {
                     e.printStackTrace();
                 }
             }
-            Message disconnected = new Message("Server", "Somebody disconnected");
-            out.writeUTF(Message.toJSON(disconnected));
         } catch (IOException e) {
             e.printStackTrace();
         }

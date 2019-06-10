@@ -223,7 +223,8 @@ public class ClientController {
                     }
                 }
             }).start();
-
+            System.out.println("SOMEBODY DISCONNECTED");
+            disconnectClient();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -234,6 +235,12 @@ public class ClientController {
         if (event.getCode() == KeyCode.ENTER){
             sendMessage();
         }
+    }
+
+    public void disconnectClient() throws IOException {
+        Message disconnect = new Message(getUserName(), "DISCONNECT " + client);
+        out = new DataOutputStream(socket.getOutputStream());
+        out.writeUTF(Message.toJSON(disconnect));
     }
 
     @FXML

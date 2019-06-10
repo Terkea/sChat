@@ -47,7 +47,7 @@ public class ClientController {
     private static final int portNumber = 4444;
     public String host;
     private static Socket socket;
-    private DataOutputStream out;
+    private static DataOutputStream out;
     public static ObservableList<Message> chat = FXCollections.observableArrayList();
     public static ObservableList<Client> allClientsConnected = FXCollections.observableArrayList();
 
@@ -227,6 +227,12 @@ public class ClientController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void disconnect() throws IOException {
+        out.close();
+        socket.close();
+        System.out.println("CLIENT DISCONNECTED");
     }
 
     @FXML

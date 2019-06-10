@@ -49,8 +49,6 @@ public class ClientThread implements Runnable {
                     if (in.available() > 0) {
                         String input = in.readUTF();
                         if (Message.fromJSON(input).getUserName().equals("REGISTER")){
-                            otherConnections = new ArrayList<Client>();
-                            System.out.println("CLIENTS CONNECTED BEFORE: " + otherConnections.size());
 
 
                             Message specialMessage = Message.fromJSON(input);
@@ -61,13 +59,19 @@ public class ClientThread implements Runnable {
                             test.setListening_port(String.valueOf(socket.getPort()));
                             specialMessage.setMessage(Client.toJSON(test));
 
+                            otherConnections = new ArrayList<Client>();
+                            System.out.println("CLIENTS CONNECTED BEFORE: " + otherConnections.size());
                             otherConnections.add(test);
                             input = Message.toJSON(specialMessage);
 
                         }
                         for (ClientThread thatClient : server.getClients()){
                             DataOutputStream outputParticularClient = new DataOutputStream(thatClient.getSocket().getOutputStream());
-                            outputParticularClient.writeUTF(input);
+                            if (!thatClient.getSocket().isClosed() && thatClient.getSocket().isConnected()){
+                                outputParticularClient.writeUTF(input);
+                            }else{
+                                System.out.println("COULDNT SEND MESSAGE TO CLIENT, PROBABLY HE DISCONNECTED");
+                            }
                         }
                     }
                 } catch (IOException e) {

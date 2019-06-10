@@ -12,6 +12,8 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -170,6 +172,8 @@ public class ClientController {
                 });
             }
         });
+
+
     }
 
 
@@ -185,9 +189,7 @@ public class ClientController {
             createClient();
         }).start();
 
-        System.out.println(getUserName() + " > Connected");
-
-
+        System.out.println(getClient().getName() + " > Connected");
 
     }
 
@@ -227,6 +229,12 @@ public class ClientController {
         }
     }
 
+    @FXML
+    void KeyHandler(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER){
+            sendMessage();
+        }
+    }
 
     @FXML
     private void sendMessage() throws IOException {
@@ -237,5 +245,7 @@ public class ClientController {
             typeMessage.setText("");
         }
     }
+
+
 
 }

@@ -67,6 +67,8 @@ public class ClientThread implements Runnable {
                     e.printStackTrace();
                 }
             }
+            Message disconnected = new Message("Server", "Somebody disconnected");
+            out.writeUTF(Message.toJSON(disconnected));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -7,6 +7,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,42 +45,41 @@ public class ClientThread implements Runnable {
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
-
             while (!socket.isClosed()) {
                 try {
-                    if (in.available() > 0 && in.available()!=-1){
+                    if (in.available() > 0) {
                         String input = in.readUTF();
-                        if (Message.fromJSON(input).getUserName().equals("REGISTER")){
 
-
-                            Message specialMessage = Message.fromJSON(input);
-                            specialMessage.setUserName("SERVER");
-
-                            Client test = Client.fromJSON(specialMessage.getMessage());
-                            test.setIp(socket.getInetAddress().toString());
-                            test.setListening_port(String.valueOf(socket.getPort()));
-                            specialMessage.setMessage(Client.toJSON(test));
-
-                            otherConnections = new ArrayList<Client>();
-                            System.out.println("CLIENTS CONNECTED BEFORE: " + otherConnections.size());
-                            otherConnections.add(test);
-                            input = Message.toJSON(specialMessage);
-
+                        if (Message.fromJSON(input).getType().equals("REGISTER")) {
+                            input = registerHandler(input);
                         }
-                        for (ClientThread thatClient : server.getClients()){
+
+                        for (ClientThread thatClient : server.getClients()) {
                             DataOutputStream outputParticularClient = new DataOutputStream(thatClient.getSocket().getOutputStream());
                             outputParticularClient.writeUTF(input);
-
                         }
+
                     }
+                } catch (SocketException se) {
+                    se.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public String registerHandler(String input) {
+        Message specialMessage = Message.fromJSON(input);
+        specialMessage.setType("REGISTER");
+
+        Client test = Client.fromJSON(specialMessage.getMessage());
+        test.setIp(this.socket.getInetAddress().toString());
+        test.setListening_port(String.valueOf(this.socket.getPort()));
+        specialMessage.setMessage(Client.toJSON(test));
+
+        return Message.toJSON(specialMessage);
+    }
 }

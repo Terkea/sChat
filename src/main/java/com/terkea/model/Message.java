@@ -9,6 +9,15 @@ import java.io.Serializable;
 public class Message implements Serializable {
     private String userName;
     private String message;
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getUserName() {
         return userName;
@@ -26,9 +35,10 @@ public class Message implements Serializable {
         this.message = message;
     }
 
-    public Message(String userName, String message) {
+    public Message(String userName, String message, String type) {
         this.userName = userName;
         this.message = message;
+        this.type = type;
     }
 
     public Message() {
@@ -39,6 +49,7 @@ public class Message implements Serializable {
         return "Message{" +
                 "userName='" + userName + '\'' +
                 ", message='" + message + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 

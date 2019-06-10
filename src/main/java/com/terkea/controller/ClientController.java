@@ -75,54 +75,54 @@ public class ClientController {
         ClientController.client = client;
     }
 
-    private void setStyleForOtherClient(Label message, Label name){
+    private void setStyleForOtherClient(Label message, Label name) {
         String style = "-fx-font-size: 14;" +
                 "-fx-background-color:  #e7e6ec;" +
                 "-fx-background-radius: 0 10 15 15;";
         message.setStyle(style);
-        message.setMinWidth(chatScrollPane.getWidth()-30);
+        message.setMinWidth(chatScrollPane.getWidth() - 30);
         message.setWrapText(true);
         message.setPadding(new Insets(10, 10, 10, 10));
 
         String clientNameStyle = "-fx-font-size: 12;";
-        name.setMinWidth(chatScrollPane.getWidth()-30);
+        name.setMinWidth(chatScrollPane.getWidth() - 30);
         name.setStyle(clientNameStyle);
         name.setAlignment(CENTER_LEFT);
     }
 
-    private void setStyleForNewClient(Label label){
+    private void setStyleForNewClient(Label label) {
         String style = "-fx-font-size: 14;" +
                 "-fx-background-color:  #707070;" +
                 "-fx-background-radius: 2 2 2 2;";
 
         label.setPadding(new Insets(10, 10, 10, 10));
-        label.setMinWidth(chatScrollPane.getWidth()-30);
+        label.setMinWidth(chatScrollPane.getWidth() - 30);
         label.setStyle(style);
         label.setAlignment(CENTER);
         label.setWrapText(true);
         label.setTextFill(Color.WHITE);
     }
 
-    private void setStyleForMyClient(Label message, Label name){
+    private void setStyleForMyClient(Label message, Label name) {
         String style = "-fx-font-size: 14;" +
                 "-fx-background-color:   #79BED9;" +
                 "-fx-background-radius: 10 0 15 15;";
         message.setStyle(style);
-        message.setMinWidth(chatScrollPane.getWidth()-30);
+        message.setMinWidth(chatScrollPane.getWidth() - 30);
         message.setWrapText(true);
         message.setPadding(new Insets(10, 10, 10, 10));
         message.setTextFill(Color.WHITE);
 
         String clientNameStyle = "-fx-font-size: 12;";
-        name.setMinWidth(chatScrollPane.getWidth()-30);
+        name.setMinWidth(chatScrollPane.getWidth() - 30);
         name.setStyle(clientNameStyle);
         name.setAlignment(CENTER_RIGHT);
     }
 
-    private void setStyleForUsers(Label user){
+    private void setStyleForUsers(Label user) {
         user.setPadding(new Insets(10, 10, 10, 10));
         String clientNameStyle = "-fx-font-size: 14;";
-        user.setMinWidth(usersScrollPane.getWidth()-5);
+        user.setMinWidth(usersScrollPane.getWidth() - 5);
         user.setStyle(clientNameStyle);
         user.setAlignment(CENTER);
         user.setWrapText(true);
@@ -130,24 +130,23 @@ public class ClientController {
     }
 
 
-
     @FXML
-    public void initialize(){
+    public void initialize() {
         chat.addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
-                Platform.runLater(()->{
+                Platform.runLater(() -> {
                     chatScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-                    Label user = new Label(chat.get(chat.size()-1).getUserName());
-                    Label message = new Label(chat.get(chat.size()-1).getMessage());
+                    Label user = new Label(chat.get(chat.size() - 1).getUserName());
+                    Label message = new Label(chat.get(chat.size() - 1).getMessage());
 
-                    if (chat.get(chat.size()-1).getUserName().equals(getUserName())){
+                    if (chat.get(chat.size() - 1).getUserName().equals(getUserName())) {
                         setStyleForMyClient(message, user);
-                    }else{
+                    } else {
                         setStyleForOtherClient(message, user);
                     }
 
-                    displayChat.setMargin(message, new Insets(0, 0,10,0));
+                    displayChat.setMargin(message, new Insets(0, 0, 10, 0));
 
                     displayChat.getChildren().add(user);
                     displayChat.getChildren().add(message);
@@ -158,17 +157,17 @@ public class ClientController {
         allClientsConnected.addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
-                Platform.runLater(()->{
+                Platform.runLater(() -> {
                     usersScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-                    Label user = new Label(allClientsConnected.get(allClientsConnected.size()-1).getName());
+                    Label user = new Label(allClientsConnected.get(allClientsConnected.size() - 1).getName());
                     setStyleForUsers(user);
 
-                    Label newConnection = new Label(allClientsConnected.get(allClientsConnected.size()-1).getName().toUpperCase() + " HAS JOINED THE CHAT ROOM");
+                    Label newConnection = new Label(allClientsConnected.get(allClientsConnected.size() - 1).getName().toUpperCase() + " HAS JOINED THE CHAT ROOM");
                     setStyleForNewClient(newConnection);
 
                     connectedUsers.getChildren().add(user);
                     displayChat.getChildren().add(newConnection);
-                    displayChat.setMargin(newConnection, new Insets(0, 0,10,0));
+                    displayChat.setMargin(newConnection, new Insets(0, 0, 10, 0));
                 });
             }
         });
@@ -178,7 +177,7 @@ public class ClientController {
 
 
     @FXML
-    public void loadUser(String host, String userName){
+    public void loadUser(String host, String userName) {
         setUserName(userName);
         setHost(host);
         setClient(new Client(getUserName()));
@@ -194,27 +193,26 @@ public class ClientController {
     }
 
     @FXML
-    public void createClient(){
+    public void createClient() {
 
         try {
             socket = new Socket(getHost(), portNumber);
 
             DataInputStream in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-            Message registerclient = new Message("REGISTER", Client.toJSON(getClient()));
+            Message registerclient = new Message(getUserName(), Client.toJSON(getClient()), "REGISTER");
             out.writeUTF(Message.toJSON(registerclient));
 
-            new Thread(()->{
-
-                while(!socket.isClosed()){
+            new Thread(() -> {
+                while (!socket.isClosed()) {
                     try {
-                        if (in.available() > 0 && in.available()!=-1){
+                        if (in.available() > 0) {
                             String input = in.readUTF();
                             Message inputMessage = Message.fromJSON(input);
-                            if (inputMessage.getUserName().equals("SERVER")){
+                            if (inputMessage.getType().equals("REGISTER")) {
                                 System.err.println(Client.fromJSON(inputMessage.getMessage()));
                                 allClientsConnected.add(Client.fromJSON(inputMessage.getMessage()));
-                            }else{
+                            } else {
                                 chat.add(inputMessage);
                             }
                         }
@@ -223,16 +221,21 @@ public class ClientController {
                     }
                 }
             }).start();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public void disconnectClient() throws IOException {
+        out = new DataOutputStream(socket.getOutputStream());
+        Message disconnect = new Message(getUserName(), "DISCONNECT", "UNREGISTER");
+        out.writeUTF(Message.toJSON(disconnect));
+    }
+
 
     @FXML
     void KeyHandler(KeyEvent event) throws IOException {
-        if (event.getCode() == KeyCode.ENTER){
+        if (event.getCode() == KeyCode.ENTER) {
             sendMessage();
         }
     }
@@ -241,13 +244,12 @@ public class ClientController {
     @FXML
     private void sendMessage() throws IOException {
         out = new DataOutputStream(socket.getOutputStream());
-        if (!typeMessage.getText().trim().equals("")){
-            Message newMessage = new Message(getUserName(), typeMessage.getText());
+        if (!typeMessage.getText().trim().equals("")) {
+            Message newMessage = new Message(getUserName(), typeMessage.getText(), "REGULAR");
             out.writeUTF(Message.toJSON(newMessage));
             typeMessage.setText("");
         }
     }
-
 
 
 }

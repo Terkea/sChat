@@ -12,7 +12,7 @@ public class Server implements Runnable{
     private static int PORT = 4444;
     private final int serverPort;
     private ServerSocket serverSocket = null;
-    private List<ClientThread> clients; // or "protected static List<ClientThread> clients;"
+    public List<ClientThread> clients; // or "protected static List<ClientThread> clients;"
 
 
     @Override

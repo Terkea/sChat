@@ -8,13 +8,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ClientThread implements Runnable {
 
     private Socket socket;
     private Server server;
     private String clientName;
-    private ArrayList<Client> otherConnections = new ArrayList<>();
+    private List<Client> otherConnections;
 
     public String getClientName() {
         return clientName;
@@ -48,16 +49,9 @@ public class ClientThread implements Runnable {
                     if (in.available() > 0) {
                         String input = in.readUTF();
                         if (Message.fromJSON(input).getUserName().equals("REGISTER")){
-                            Message oldConnection = null;
-                            if (otherConnections.size() >= 1){
-                                for (int i = 0; i<otherConnections.size(); i++){
-                                oldConnection.setUserName("SERVER");
-                                oldConnection.setMessage(Client.toJSON(otherConnections.get(i)));
+                            otherConnections = new ArrayList<Client>();
+                            System.out.println("CLIENTS CONNECTED BEFORE: " + otherConnections.size());
 
-                                DataOutputStream thisClient = new DataOutputStream(socket.getOutputStream());
-                                thisClient.writeUTF(Message.toJSON(oldConnection));
-                                }
-                            }
 
                             Message specialMessage = Message.fromJSON(input);
                             specialMessage.setUserName("SERVER");
@@ -67,6 +61,7 @@ public class ClientThread implements Runnable {
                             test.setListening_port(String.valueOf(socket.getPort()));
                             specialMessage.setMessage(Client.toJSON(test));
 
+                            otherConnections.add(test);
                             input = Message.toJSON(specialMessage);
 
                         }
@@ -79,8 +74,10 @@ public class ClientThread implements Runnable {
                     e.printStackTrace();
                 }
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

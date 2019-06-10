@@ -96,7 +96,7 @@ public class ClientController {
                 "-fx-background-radius: 2 2 2 2;";
 
         label.setPadding(new Insets(10, 10, 10, 10));
-        label.setMinWidth(chatScrollPane.getWidth()-5);
+        label.setMinWidth(chatScrollPane.getWidth()-30);
         label.setStyle(style);
         label.setAlignment(CENTER);
         label.setWrapText(true);
@@ -108,13 +108,13 @@ public class ClientController {
                 "-fx-background-color:   #79BED9;" +
                 "-fx-background-radius: 10 0 15 15;";
         message.setStyle(style);
-        message.setMinWidth(chatScrollPane.getWidth()-5);
+        message.setMinWidth(chatScrollPane.getWidth()-30);
         message.setWrapText(true);
         message.setPadding(new Insets(10, 10, 10, 10));
         message.setTextFill(Color.WHITE);
 
         String clientNameStyle = "-fx-font-size: 12;";
-        name.setMinWidth(chatScrollPane.getWidth()-5);
+        name.setMinWidth(chatScrollPane.getWidth()-30);
         name.setStyle(clientNameStyle);
         name.setAlignment(CENTER_RIGHT);
     }
@@ -223,8 +223,7 @@ public class ClientController {
                     }
                 }
             }).start();
-            System.out.println("SOMEBODY DISCONNECTED");
-            disconnectClient();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -237,11 +236,6 @@ public class ClientController {
         }
     }
 
-    public void disconnectClient() throws IOException {
-        Message disconnect = new Message(getUserName(), "DISCONNECT " + client);
-        out = new DataOutputStream(socket.getOutputStream());
-        out.writeUTF(Message.toJSON(disconnect));
-    }
 
     @FXML
     private void sendMessage() throws IOException {

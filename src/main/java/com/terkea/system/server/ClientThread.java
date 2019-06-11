@@ -69,10 +69,12 @@ public class ClientThread implements Runnable {
                         String input = in.readUTF();
 
                         if (Message.fromJSON(input).getType().equals("REGISTER")) {
-                            input = registerHandler(input);
+                             registerHandler(input);
+                        }else{
+                            outputHandler(input);
                         }
 
-                        outputHandler(input);
+
 
                     }
                 } catch (IOException e) {
@@ -92,7 +94,7 @@ public class ClientThread implements Runnable {
      * @param input Message
      * @return Message
      */
-    public String registerHandler(String input) {
+    public void registerHandler(String input) {
         Message specialMessage = Message.fromJSON(input);
         specialMessage.setType("REGISTER");
 
@@ -108,13 +110,17 @@ public class ClientThread implements Runnable {
                 thatClient.setClient(test);
             }
         }
-
-        for (ClientThread thatClient : server.getClients()){
-            System.out.println(thatClient.toString());
-        }
-
         specialMessage.setMessage(Client.toJSON(test));
-        return Message.toJSON(specialMessage);
+
+        try {
+//            outputHandler(Message.toJSON(specialMessage));
+            for (ClientThread thatClient : server.getClients()){
+                Message otherConnections = new Message(thatClient.getClient().getName(), Client.toJSON(thatClient.getClient()) , "REGISTER");
+                outputHandler(Message.toJSON(otherConnections));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

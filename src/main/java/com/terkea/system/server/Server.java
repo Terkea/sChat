@@ -1,6 +1,9 @@
 package com.terkea.system.server;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -12,7 +15,7 @@ public class Server implements Runnable{
     private static int PORT = 4444;
     private final int serverPort;
     private ServerSocket serverSocket = null;
-    public ArrayList<ClientThread> clients; // or "protected static List<ClientThread> clients;"
+    public ObservableList<ClientThread> clients = FXCollections.observableArrayList(); // or "protected static List<ClientThread> clients;"
 
 
     @Override
@@ -32,7 +35,6 @@ public class Server implements Runnable{
 
 
     private void startServer(){
-        clients = new ArrayList<ClientThread>();
         try {
             serverSocket = new ServerSocket(PORT);
             System.out.println("SERVER ON");

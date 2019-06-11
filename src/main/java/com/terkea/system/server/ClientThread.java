@@ -53,6 +53,8 @@ public class ClientThread implements Runnable {
         return "ClientThread{" +
                 "socket=" + socket +
                 ", server=" + server +
+                ", clientName='" + clientName + '\'' +
+                ", client=" + client +
                 '}';
     }
 
@@ -68,18 +70,6 @@ public class ClientThread implements Runnable {
 
                         if (Message.fromJSON(input).getType().equals("REGISTER")) {
                             input = registerHandler(input);
-                            for (ClientThread thatClient : server.getClients()){
-                                Client findClient = Client.fromJSON(Message.fromJSON(input).getMessage());
-                                if (String.valueOf(thatClient.getSocket().getPort()).equals(findClient.getListening_port()) &&
-                                        thatClient.getSocket().getInetAddress().toString().equals(findClient.getIp())){
-                                    System.err.println("HUREY");
-
-                                    //SERVER SIDE
-                                    thatClient.setClient(findClient);
-
-
-                                }
-                            }
                         }
 
                         outputHandler(input);
@@ -94,13 +84,11 @@ public class ClientThread implements Runnable {
         }
     }
 
-    private void unregisterHandler(String input) {
-
-    }
 
     /**
      * Once a client connects he sends a registration message
      * This method sets the ip and the listening port for that client object
+     * Then the
      * @param input Message
      * @return Message
      */
@@ -111,14 +99,28 @@ public class ClientThread implements Runnable {
         Client test = Client.fromJSON(specialMessage.getMessage());
         test.setIp(this.socket.getInetAddress().toString());
         test.setListening_port(String.valueOf(this.socket.getPort()));
-        specialMessage.setMessage(Client.toJSON(test));
 
+        for (ClientThread thatClient : server.getClients()){
+            if (String.valueOf(thatClient.getSocket().getPort()).equals(test.getListening_port()) &&
+                    thatClient.getSocket().getInetAddress().toString().equals(test.getIp())){
+                //SERVER SIDE
+                specialMessage.setMessage(Client.toJSON(test));
+                thatClient.setClient(test);
+            }
+        }
+
+        for (ClientThread thatClient : server.getClients()){
+            System.out.println(thatClient.toString());
+        }
+
+        specialMessage.setMessage(Client.toJSON(test));
         return Message.toJSON(specialMessage);
     }
 
     /**
      * Sends the received message to all connected clients,
-     * If one client disconnects then it will be removed from the client list which can be found in Server Class
+     * If one client disconnects the socket and i/o streams will be closed and
+     * then it will be removed from the client list which can be found in Server Class
      * @param input Message
      * @throws IOException
      */
@@ -133,9 +135,16 @@ public class ClientThread implements Runnable {
             }
         }
         if (faultyClient != null){
-            server.getClients().remove(faultyClient);
-            System.out.println("this is the faulty client: " + faultyClient.toString());
-            System.out.println("Client removed from list");
+            try{
+                faultyClient.getSocket().getOutputStream().close();
+                faultyClient.getSocket().getInputStream().close();
+                faultyClient.getSocket().close();
+            }catch (SocketException se){
+
+            }
+            finally {
+                server.getClients().remove(faultyClient);
+            }
         }
     }
 }

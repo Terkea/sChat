@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Client implements Serializable {
     private String name;
@@ -66,6 +67,24 @@ public class Client implements Serializable {
 
     public void setPrivate_key(String private_key) {
         this.private_key = private_key;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return Objects.equals(name, client.name) &&
+                Objects.equals(public_key, client.public_key) &&
+                Objects.equals(private_key, client.private_key) &&
+                Objects.equals(ip, client.ip) &&
+                Objects.equals(listening_port, client.listening_port);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, public_key, private_key, ip, listening_port);
     }
 
     @Override

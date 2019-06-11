@@ -212,7 +212,9 @@ public class ClientController {
                             Message inputMessage = Message.fromJSON(input);
                             if (inputMessage.getType().equals("REGISTER")) {
                                 System.err.println(Client.fromJSON(inputMessage.getMessage()));
-                                allClientsConnected.add(Client.fromJSON(inputMessage.getMessage()));
+                                if (!allClientsConnected.contains(Client.fromJSON(inputMessage.getMessage()))){
+                                    allClientsConnected.add(Client.fromJSON(inputMessage.getMessage()));
+                                }
                             } else {
                                 chat.add(inputMessage);
                             }

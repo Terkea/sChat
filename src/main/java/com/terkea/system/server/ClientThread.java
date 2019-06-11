@@ -80,6 +80,12 @@ public class ClientThread implements Runnable {
 
     }
 
+    /**
+     * Once a client connects he sends a registration message
+     * This method sets the ip and the listening port for that client object
+     * @param input Message
+     * @return Message
+     */
     public String registerHandler(String input) {
         Message specialMessage = Message.fromJSON(input);
         specialMessage.setType("REGISTER");
@@ -92,6 +98,12 @@ public class ClientThread implements Runnable {
         return Message.toJSON(specialMessage);
     }
 
+    /**
+     * Sends the received message to all connected clients,
+     * If one client disconnects then it will be removed from the client list which can be found in Server Class
+     * @param input Message
+     * @throws IOException
+     */
     public void outputHandler(String input) throws IOException {
         ClientThread faultyClient = null;
         for (ClientThread thatClient : server.getClients()) {
@@ -99,9 +111,7 @@ public class ClientThread implements Runnable {
             try{
                 outputParticularClient.writeUTF(input);
             }catch (SocketException se){
-                se.printStackTrace();
                 System.out.println("this is the faulty client: " + thatClient.toString());
-
                 faultyClient = thatClient;
             }
         }

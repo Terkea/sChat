@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03dac0be-6f3c-49d6-9511-dbd7e3631a9e" name="Default Changelist" comment="folder structure">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/terkea/system/server/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terkea/system/server/ClientThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terkea/system/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terkea/system/server/Server.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/ClientController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29">
-              <caret line="134" selection-start-line="134" selection-end-line="154" selection-end-column="11" />
+            <state relative-caret-position="269">
+              <caret line="146" column="21" lean-forward="true" selection-start-line="146" selection-start-column="21" selection-end-line="146" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -34,8 +32,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/system/server/ClientThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="110" column="59" selection-start-line="110" selection-start-column="59" selection-end-line="110" selection-end-column="59" />
+            <state relative-caret-position="231">
+              <caret line="113" column="90" selection-start-line="113" selection-start-column="90" selection-end-line="113" selection-end-column="90" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -737,16 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/ClientController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="134" selection-start-line="134" selection-end-line="154" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/system/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -757,10 +745,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/controller/ClientController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="146" column="21" lean-forward="true" selection-start-line="146" selection-start-column="21" selection-end-line="146" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/terkea/system/server/ClientThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="110" column="59" selection-start-line="110" selection-start-column="59" selection-end-line="110" selection-end-column="59" />
+        <state relative-caret-position="231">
+          <caret line="113" column="90" selection-start-line="113" selection-start-column="90" selection-end-line="113" selection-end-column="90" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

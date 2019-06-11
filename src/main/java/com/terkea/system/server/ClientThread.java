@@ -40,6 +40,14 @@ public class ClientThread implements Runnable {
     }
 
     @Override
+    public String toString() {
+        return "ClientThread{" +
+                "socket=" + socket +
+                ", server=" + server +
+                '}';
+    }
+
+    @Override
     public void run() {
         try {
             DataInputStream in = new DataInputStream(socket.getInputStream());
@@ -69,7 +77,7 @@ public class ClientThread implements Runnable {
     }
 
     private void unregisterHandler(String input) {
-        
+
     }
 
     public String registerHandler(String input) {
@@ -85,9 +93,22 @@ public class ClientThread implements Runnable {
     }
 
     public void outputHandler(String input) throws IOException {
+        ClientThread faultyClient = null;
         for (ClientThread thatClient : server.getClients()) {
             DataOutputStream outputParticularClient = new DataOutputStream(thatClient.getSocket().getOutputStream());
-            outputParticularClient.writeUTF(input);
+            try{
+                outputParticularClient.writeUTF(input);
+            }catch (SocketException se){
+                se.printStackTrace();
+                System.out.println("this is the faulty client: " + thatClient.toString());
+
+                faultyClient = thatClient;
+            }
+        }
+        if (faultyClient != null){
+            server.getClients().remove(faultyClient);
+            System.out.println("this is the faulty client: " + faultyClient.toString());
+            System.out.println("Client removed from list");
         }
     }
 }

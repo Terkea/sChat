@@ -16,7 +16,16 @@ public class ClientThread implements Runnable {
     private Socket socket;
     private Server server;
     private String clientName;
+    private Client client;
     private ArrayList<Client> otherConnections;
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     public String getClientName() {
         return clientName;
@@ -51,7 +60,6 @@ public class ClientThread implements Runnable {
     public void run() {
         try {
             DataInputStream in = new DataInputStream(socket.getInputStream());
-            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
             while (!socket.isClosed()) {
                 try {
@@ -60,8 +68,18 @@ public class ClientThread implements Runnable {
 
                         if (Message.fromJSON(input).getType().equals("REGISTER")) {
                             input = registerHandler(input);
-                        }else if (Message.fromJSON(input).getType().equals("UNREGISTER")) {
-                             unregisterHandler(input);
+                            for (ClientThread thatClient : server.getClients()){
+                                Client findClient = Client.fromJSON(Message.fromJSON(input).getMessage());
+                                if (String.valueOf(thatClient.getSocket().getPort()).equals(findClient.getListening_port()) &&
+                                        thatClient.getSocket().getInetAddress().toString().equals(findClient.getIp())){
+                                    System.err.println("HUREY");
+
+                                    //SERVER SIDE
+                                    thatClient.setClient(findClient);
+
+
+                                }
+                            }
                         }
 
                         outputHandler(input);
@@ -111,7 +129,6 @@ public class ClientThread implements Runnable {
             try{
                 outputParticularClient.writeUTF(input);
             }catch (SocketException se){
-                System.out.println("this is the faulty client: " + thatClient.toString());
                 faultyClient = thatClient;
             }
         }

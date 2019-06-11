@@ -1,0 +1,16 @@
+com\terkea\system\Utilities.class
+com\terkea\App$2.class
+com\terkea\controller\ClientController$1.class
+com\terkea\App.class
+com\terkea\controller\ClientController.class
+com\terkea\App$1.class
+com\terkea\controller\ClientController$2.class
+com\terkea\controller\ServerThread.class
+com\terkea\system\server\Server.class
+com\terkea\controller\CreateClientController.class
+com\terkea\controller\CreateServerController.class
+com\terkea\model\Client.class
+module-info.class
+com\terkea\model\Message.class
+com\terkea\system\server\ClientThread.class
+com\terkea\controller\LandingPageController.class

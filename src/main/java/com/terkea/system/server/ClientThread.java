@@ -140,8 +140,15 @@ public class ClientThread implements Runnable {
                 faultyClient = thatClient;
             }
         }
+
+        /**
+         * IF THE CLIENT DISCONNECTED THEN CLOSE THE I/O STREAMS, SOCKET
+         * THEN SEND A MESSAGE TO ALL AVAILABLE CLIENT TO INFORM THEM
+         * THAT SOMEBODY LEFT
+         * */
         if (faultyClient != null){
             try{
+                Message disconnect = new Message("SERVER", Client.toJSON(faultyClient.getClient()), "UNREGISTER");
                 faultyClient.getSocket().getOutputStream().close();
                 faultyClient.getSocket().getInputStream().close();
                 faultyClient.getSocket().close();

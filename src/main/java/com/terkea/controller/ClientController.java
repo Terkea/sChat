@@ -19,6 +19,9 @@ import javafx.scene.paint.Color;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import static javafx.geometry.Pos.*;
 
@@ -50,6 +53,7 @@ public class ClientController {
     private static DataOutputStream out;
     public static ObservableList<Message> chat = FXCollections.observableArrayList();
     public static ObservableList<Client> allClientsConnected = FXCollections.observableArrayList();
+//    public static ArrayList<Client, Label> labelMap;
 
     public String getHost() {
         return host;
@@ -160,11 +164,13 @@ public class ClientController {
                 Platform.runLater(() -> {
                     usersScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
                     Label user = new Label(allClientsConnected.get(allClientsConnected.size() - 1).getName());
+                    user.setId(Client.toJSON(allClientsConnected.get(allClientsConnected.size()-1)));
                     setStyleForUsers(user);
 
                     Label newConnection = new Label(allClientsConnected.get(allClientsConnected.size() - 1).getName().toUpperCase() + " HAS JOINED THE CHAT ROOM");
                     setStyleForNewClient(newConnection);
 
+//                    labelMap.put(allClientsConnected.size()-1, user);
                     connectedUsers.getChildren().add(user);
                     displayChat.getChildren().add(newConnection);
                     displayChat.setMargin(newConnection, new Insets(0, 0, 10, 0));
@@ -215,7 +221,9 @@ public class ClientController {
                                 if (!allClientsConnected.contains(Client.fromJSON(inputMessage.getMessage()))){
                                     allClientsConnected.add(Client.fromJSON(inputMessage.getMessage()));
                                 }
-                            } else {
+                            } else if(inputMessage.getUserName().equals("SERVER")){
+                                System.out.println("Message from server");
+                            }else {
                                 chat.add(inputMessage);
                             }
                         }

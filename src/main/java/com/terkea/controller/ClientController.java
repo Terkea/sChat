@@ -250,13 +250,12 @@ public class ClientController {
                     }
                 }
             }).start();
-            disconnectClient();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void disconnectClient() throws IOException {
+    public static void disconnectClient() throws IOException {
         out = new DataOutputStream(socket.getOutputStream());
         Message disconnect = new Message(getUserName(), Client.toJSON(getClient()), "UNREGISTER");
         out.writeUTF(Message.toJSON(disconnect));

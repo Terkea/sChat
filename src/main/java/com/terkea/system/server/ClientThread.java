@@ -96,7 +96,7 @@ public class ClientThread implements Runnable {
         ClientThread match = null;
         System.err.println("REQUEST: " + unregisterMessage.toString());
         for (ClientThread thatClient : server.getClients()) {
-            if (thatClient.getClient().equals(theRequestComesFrom)) {
+            if (thatClient.getClient().getName().equals(theRequestComesFrom.getName())) {
                 match = thatClient;
                 System.out.println("MATCH FOUND");
             }else{

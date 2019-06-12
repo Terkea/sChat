@@ -74,6 +74,11 @@ public class App extends Application {
         changeStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent e) {
+                try {
+                    ClientController.disconnectClient();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
                 Platform.exit();
                 System.exit(0);
             }

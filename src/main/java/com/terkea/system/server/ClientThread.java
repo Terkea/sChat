@@ -90,6 +90,11 @@ public class ClientThread implements Runnable {
         }
     }
 
+    /** INTERPRETATES A UNREGISTER REQUEST THEN
+     * SENDS IT FORWARD TO THE  UNREGISTER HANDLER
+     * @param input
+     * @throws IOException
+     */
     public void unregisterRequest(String input) throws IOException {
         Message unregisterMessage = Message.fromJSON(input);
         Client theRequestComesFrom = Client.fromJSON(unregisterMessage.getMessage());
@@ -98,9 +103,6 @@ public class ClientThread implements Runnable {
         for (ClientThread thatClient : server.getClients()) {
             if (thatClient.getClient().getName().equals(theRequestComesFrom.getName())) {
                 match = thatClient;
-                System.out.println("MATCH FOUND");
-            }else{
-                System.out.println("MATCH NOT FOUND");
             }
         }
         if (match != null){
@@ -109,6 +111,10 @@ public class ClientThread implements Runnable {
         }
     }
 
+    /** REMOVES FROM SERVER CLIENT LIST A SPECIFIC CLIENT
+     * @param faultyClient
+     * @throws IOException
+     */
     public void unregisterHandler(ClientThread faultyClient) throws IOException {
 
         if (faultyClient != null) {

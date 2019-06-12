@@ -72,7 +72,7 @@ public class ClientController {
         this.userName = userName;
     }
 
-    public Client getClient() {
+    public static Client getClient() {
         return client;
     }
 

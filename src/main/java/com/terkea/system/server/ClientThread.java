@@ -149,6 +149,12 @@ public class ClientThread implements Runnable {
         if (faultyClient != null){
             try{
                 Message disconnect = new Message("SERVER", Client.toJSON(faultyClient.getClient()), "UNREGISTER");
+
+                for (ClientThread thatClient : server.getClients()) {
+                    DataOutputStream outputParticularClient = new DataOutputStream(thatClient.getSocket().getOutputStream());
+                    outputParticularClient.writeUTF(Message.toJSON(disconnect));
+                }
+
                 faultyClient.getSocket().getOutputStream().close();
                 faultyClient.getSocket().getInputStream().close();
                 faultyClient.getSocket().close();

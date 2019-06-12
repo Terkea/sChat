@@ -53,7 +53,8 @@ public class ClientController {
     private static DataOutputStream out;
     public static ObservableList<Message> chat = FXCollections.observableArrayList();
     public static ObservableList<Client> allClientsConnected = FXCollections.observableArrayList();
-//    public static ArrayList<Client, Label> labelMap;
+    public static ObservableList<Client> allClientsDisconnected = FXCollections.observableArrayList();
+//    public static ArrayList<Label> connectedUsersLabel = new ArrayList<>();
 
     public String getHost() {
         return host;
@@ -170,10 +171,24 @@ public class ClientController {
                     Label newConnection = new Label(allClientsConnected.get(allClientsConnected.size() - 1).getName().toUpperCase() + " HAS JOINED THE CHAT ROOM");
                     setStyleForNewClient(newConnection);
 
-//                    labelMap.put(allClientsConnected.size()-1, user);
                     connectedUsers.getChildren().add(user);
                     displayChat.getChildren().add(newConnection);
                     displayChat.setMargin(newConnection, new Insets(0, 0, 10, 0));
+                });
+            }
+        });
+
+        allClientsDisconnected.addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                Platform.runLater(() -> {
+                    Label lostConnection = new Label(allClientsDisconnected.get(allClientsDisconnected.size() - 1).getName().toUpperCase() + " HAS LEFT THE CHAT ROOM");
+                    setStyleForNewClient(lostConnection);
+
+//                    connectedUsers.getId(allClientsDisconnected.get(allClientsDisconnected.size() - 1));
+
+                    displayChat.getChildren().add(lostConnection);
+                    displayChat.setMargin(lostConnection, new Insets(0, 0, 10, 0));
                 });
             }
         });
@@ -222,7 +237,10 @@ public class ClientController {
                                     allClientsConnected.add(Client.fromJSON(inputMessage.getMessage()));
                                 }
                             } else if(inputMessage.getUserName().equals("SERVER")){
-                                System.out.println("Message from server");
+                                if (inputMessage.getType().equals("UNREGISTER")){
+                                    System.err.println("SOMEBODY LEFT THE CHAT ROOM");
+                                    allClientsDisconnected.add(Client.fromJSON(inputMessage.getMessage()));
+                                }
                             }else {
                                 chat.add(inputMessage);
                             }

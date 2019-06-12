@@ -70,9 +70,12 @@ public class ClientThread implements Runnable {
 
                         if (Message.fromJSON(input).getType().equals("REGISTER")) {
                             registerHandler(input);
-                        } else if (Message.fromJSON(input).getType().equals("UNREGISTER")) {
-                            unregisterHandler(input);
-                        } else {
+                        }
+                        else if (Message.fromJSON(input).getType().equals("UNREGISTER")) {
+                            unregisterRequest(input);
+                            System.out.println("UNREGISTER REQUEST");
+                        }
+                        else {
                             outputHandler(input);
                         }
 
@@ -87,18 +90,23 @@ public class ClientThread implements Runnable {
         }
     }
 
-    public void unregisterHandler(String input) throws IOException {
+    public void unregisterRequest(String input) throws IOException {
         Message unregisterMessage = Message.fromJSON(input);
         Client theRequestComesFrom = Client.fromJSON(unregisterMessage.getMessage());
-        ClientThread disconnectedClient = null;
-
+        ClientThread match = null;
+        System.err.println("REQUEST: " + unregisterMessage.toString());
         for (ClientThread thatClient : server.getClients()) {
-            if (String.valueOf(thatClient.getSocket().getPort()).equals(theRequestComesFrom.getListening_port()) &&
-                    thatClient.getSocket().getInetAddress().toString().equals(theRequestComesFrom.getIp())) {
-                unregisterHandler(thatClient);
+            if (thatClient.getClient().equals(theRequestComesFrom)) {
+                match = thatClient;
+                System.out.println("MATCH FOUND");
+            }else{
+                System.out.println("MATCH NOT FOUND");
             }
         }
-//        unregisterHandler(disconnectedClient);
+        if (match != null){
+            unregisterHandler(match);
+            System.err.println("REQUEST TO UNREGISTER HANDLER");
+        }
     }
 
     public void unregisterHandler(ClientThread faultyClient) throws IOException {
@@ -138,19 +146,12 @@ public class ClientThread implements Runnable {
         Client test = Client.fromJSON(specialMessage.getMessage());
         test.setIp(this.socket.getInetAddress().toString());
         test.setListening_port(String.valueOf(this.socket.getPort()));
+        specialMessage.setMessage(Client.toJSON(test));
 
-        for (ClientThread thatClient : server.getClients()) {
-            if (String.valueOf(thatClient.getSocket().getPort()).equals(test.getListening_port()) &&
-                    thatClient.getSocket().getInetAddress().toString().equals(test.getIp())) {
-                //SERVER SIDE
-                specialMessage.setMessage(Client.toJSON(test));
-                thatClient.setClient(test);
-            }
-        }
+        matchThreadWithClient(test);
         specialMessage.setMessage(Client.toJSON(test));
 
         try {
-//            outputHandler(Message.toJSON(specialMessage));
             for (ClientThread thatClient : server.getClients()) {
                 Message otherConnections = new Message(thatClient.getClient().getName(), Client.toJSON(thatClient.getClient()), "REGISTER");
                 outputHandler(Message.toJSON(otherConnections));
@@ -180,6 +181,17 @@ public class ClientThread implements Runnable {
         }
         if (faultyClient != null){
             unregisterHandler(faultyClient);
+        }
+    }
+
+    private void matchThreadWithClient(Client client){
+        for (ClientThread thatClient : server.getClients()) {
+            if (String.valueOf(thatClient.getSocket().getPort()).equals(client.getListening_port()) &&
+                    thatClient.getSocket().getInetAddress().toString().equals(client.getIp())) {
+                //SERVER SIDE
+
+                thatClient.setClient(client);
+            }
         }
     }
 }

@@ -54,7 +54,7 @@ public class ClientController {
     public static ObservableList<Message> chat = FXCollections.observableArrayList();
     public static ObservableList<Client> allClientsConnected = FXCollections.observableArrayList();
     public static ObservableList<Client> allClientsDisconnected = FXCollections.observableArrayList();
-//    public static ArrayList<Label> connectedUsersLabel = new ArrayList<>();
+    public static ArrayList<Label> connectedUsersLabel = new ArrayList<>();
 
     public String getHost() {
         return host;
@@ -165,13 +165,15 @@ public class ClientController {
                 Platform.runLater(() -> {
                     usersScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
                     Label user = new Label(allClientsConnected.get(allClientsConnected.size() - 1).getName());
-                    user.setId(Client.toJSON(allClientsConnected.get(allClientsConnected.size()-1)));
+                    user.setId(allClientsConnected.get(allClientsConnected.size() - 1).toString());
                     setStyleForUsers(user);
 
                     Label newConnection = new Label(allClientsConnected.get(allClientsConnected.size() - 1).getName().toUpperCase() + " HAS JOINED THE CHAT ROOM");
                     setStyleForNewClient(newConnection);
 
+                    connectedUsersLabel.add(user);
                     connectedUsers.getChildren().add(user);
+
                     displayChat.getChildren().add(newConnection);
                     displayChat.setMargin(newConnection, new Insets(0, 0, 10, 0));
                 });
@@ -185,7 +187,11 @@ public class ClientController {
                     Label lostConnection = new Label(allClientsDisconnected.get(allClientsDisconnected.size() - 1).getName().toUpperCase() + " HAS LEFT THE CHAT ROOM");
                     setStyleForNewClient(lostConnection);
 
-//                    connectedUsers.getId(allClientsDisconnected.get(allClientsDisconnected.size() - 1));
+                    for (int i = 0; i<connectedUsersLabel.size();i++){
+                        if (connectedUsersLabel.get(i).getId().equals(allClientsDisconnected.get(allClientsDisconnected.size() - 1).toString())){
+                            connectedUsersLabel.get(i).setDisable(true);
+                        }
+                    }
 
                     displayChat.getChildren().add(lostConnection);
                     displayChat.setMargin(lostConnection, new Insets(0, 0, 10, 0));

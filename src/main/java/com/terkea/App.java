@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.terkea.controller.ClientController;
 import com.terkea.model.Message;
+import com.terkea.system.server.ClientThread;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -73,6 +74,11 @@ public class App extends Application {
         changeStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent e) {
+                try {
+                    ClientController.disconnectClient();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
                 Platform.exit();
                 System.exit(0);
             }

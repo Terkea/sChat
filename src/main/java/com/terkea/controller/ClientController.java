@@ -64,7 +64,7 @@ public class ClientController {
         this.host = host;
     }
 
-    public String getUserName() {
+    public static String getUserName() {
         return userName;
     }
 
@@ -255,7 +255,7 @@ public class ClientController {
         }
     }
 
-    public void disconnectClient() throws IOException {
+    public static void disconnectClient() throws IOException {
         out = new DataOutputStream(socket.getOutputStream());
         Message disconnect = new Message(getUserName(), Client.toJSON(getClient()), "UNREGISTER");
         out.writeUTF(Message.toJSON(disconnect));

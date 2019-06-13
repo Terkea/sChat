@@ -238,13 +238,11 @@ public class ClientController {
                             String input = in.readUTF();
                             Message inputMessage = Message.fromJSON(input);
                             if (inputMessage.getType().equals("REGISTER")) {
-                                System.err.println(Client.fromJSON(inputMessage.getMessage()));
                                 if (!allClientsConnected.contains(Client.fromJSON(inputMessage.getMessage()))){
                                     allClientsConnected.add(Client.fromJSON(inputMessage.getMessage()));
                                 }
                             } else if(inputMessage.getUserName().equals("SERVER")){
                                 if (inputMessage.getType().equals("UNREGISTER")){
-                                    System.err.println("SOMEBODY LEFT THE CHAT ROOM");
                                     allClientsDisconnected.add(Client.fromJSON(inputMessage.getMessage()));
                                 }
                             }else {

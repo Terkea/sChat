@@ -1,4 +1,4 @@
-package com.terkea.system.server;
+package com.terkea.server;
 
 
 import javafx.collections.FXCollections;
@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Server implements Runnable{

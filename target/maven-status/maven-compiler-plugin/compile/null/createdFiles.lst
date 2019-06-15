@@ -1,1 +1,3 @@
 com\terkea\controller\ClientController$3.class
+com\terkea\server\Server.class
+com\terkea\server\ClientThread.class

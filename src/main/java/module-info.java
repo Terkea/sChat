@@ -14,7 +14,7 @@ module com.terkea {
     requires org.kordamp.ikonli.fontawesome;
 
     exports com.terkea.model;
-    exports com.terkea.system.server;
+    exports com.terkea.server;
 
     opens com.terkea to javafx.fxml;
     exports com.terkea;

@@ -1,11 +1,7 @@
 package com.terkea;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.terkea.controller.ClientController;
-import com.terkea.model.Message;
-import com.terkea.system.server.ClientThread;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

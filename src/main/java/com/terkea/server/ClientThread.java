@@ -1,4 +1,4 @@
-package com.terkea.system.server;
+package com.terkea.server;
 
 import com.terkea.model.Client;
 import com.terkea.model.Message;
@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClientThread implements Runnable {
 
@@ -161,10 +160,18 @@ public class ClientThread implements Runnable {
             for (ClientThread thatClient : server.getClients()) {
                 Message otherConnections = new Message(thatClient.getClient().getName(), Client.toJSON(thatClient.getClient()), "REGISTER");
                 outputHandler(Message.toJSON(otherConnections));
+                if (clientsConnected()==1){
+                    Message askForModuloPandPrimitiveRoot = new Message("server", "send credentials", "KEYS");
+                    outputHandler(Message.toJSON(askForModuloPandPrimitiveRoot));
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private int clientsConnected(){
+        return server.getClients().size();
     }
 
     /**

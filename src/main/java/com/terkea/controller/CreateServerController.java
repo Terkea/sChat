@@ -2,7 +2,7 @@ package com.terkea.controller;
 
 
 import com.terkea.App;
-import com.terkea.system.server.Server;
+import com.terkea.server.Server;
 import com.terkea.system.Utilities;
 
 import javafx.event.ActionEvent;

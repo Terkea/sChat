@@ -155,6 +155,9 @@ public class ClientController {
 
                     displayChat.getChildren().add(user);
                     displayChat.getChildren().add(message);
+
+//                    SCROLL TILL THE BOTTOM OF THE SCROLLPANE BINDING ITS HEIGHT TO VBOX HEIGHT
+                    chatScrollPane.vvalueProperty().bind(displayChat.heightProperty());
                 });
             }
         });
@@ -195,9 +198,12 @@ public class ClientController {
 
                     displayChat.getChildren().add(lostConnection);
                     displayChat.setMargin(lostConnection, new Insets(0, 0, 10, 0));
+                    //                    SCROLL TILL THE BOTTOM OF THE SCROLLPANE BINDING ITS HEIGHT TO VBOX HEIGHT
+                    chatScrollPane.vvalueProperty().bind(displayChat.heightProperty());
                 });
             }
         });
+
 
 
     }

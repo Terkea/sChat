@@ -16,7 +16,7 @@ public class ClientThread implements Runnable {
     private Socket socket;
     private Server server;
     private String clientName;
-    private List<Client> otherConnections;
+    private ArrayList<Client> otherConnections;
 
     public String getClientName() {
         return clientName;
@@ -40,6 +40,14 @@ public class ClientThread implements Runnable {
     }
 
     @Override
+    public String toString() {
+        return "ClientThread{" +
+                "socket=" + socket +
+                ", server=" + server +
+                '}';
+    }
+
+    @Override
     public void run() {
         try {
             DataInputStream in = new DataInputStream(socket.getInputStream());
@@ -52,16 +60,13 @@ public class ClientThread implements Runnable {
 
                         if (Message.fromJSON(input).getType().equals("REGISTER")) {
                             input = registerHandler(input);
+                        }else if (Message.fromJSON(input).getType().equals("UNREGISTER")) {
+                             unregisterHandler(input);
                         }
 
-                        for (ClientThread thatClient : server.getClients()) {
-                            DataOutputStream outputParticularClient = new DataOutputStream(thatClient.getSocket().getOutputStream());
-                            outputParticularClient.writeUTF(input);
-                        }
+                        outputHandler(input);
 
                     }
-                } catch (SocketException se) {
-                    se.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -71,6 +76,16 @@ public class ClientThread implements Runnable {
         }
     }
 
+    private void unregisterHandler(String input) {
+
+    }
+
+    /**
+     * Once a client connects he sends a registration message
+     * This method sets the ip and the listening port for that client object
+     * @param input Message
+     * @return Message
+     */
     public String registerHandler(String input) {
         Message specialMessage = Message.fromJSON(input);
         specialMessage.setType("REGISTER");
@@ -81,5 +96,29 @@ public class ClientThread implements Runnable {
         specialMessage.setMessage(Client.toJSON(test));
 
         return Message.toJSON(specialMessage);
+    }
+
+    /**
+     * Sends the received message to all connected clients,
+     * If one client disconnects then it will be removed from the client list which can be found in Server Class
+     * @param input Message
+     * @throws IOException
+     */
+    public void outputHandler(String input) throws IOException {
+        ClientThread faultyClient = null;
+        for (ClientThread thatClient : server.getClients()) {
+            DataOutputStream outputParticularClient = new DataOutputStream(thatClient.getSocket().getOutputStream());
+            try{
+                outputParticularClient.writeUTF(input);
+            }catch (SocketException se){
+                System.out.println("this is the faulty client: " + thatClient.toString());
+                faultyClient = thatClient;
+            }
+        }
+        if (faultyClient != null){
+            server.getClients().remove(faultyClient);
+            System.out.println("this is the faulty client: " + faultyClient.toString());
+            System.out.println("Client removed from list");
+        }
     }
 }
